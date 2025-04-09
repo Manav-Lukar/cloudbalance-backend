@@ -13,12 +13,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
     @Column(unique = true, nullable = false)
-    private String email;
+    private String email;  // Used for login
 
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
-    private String role; // e.g., ROLE_ADMIN, ROLE_READ_ONLY, ROLE_CUSTOMER
+    private String role;  // ROLE_ADMIN, ROLE_READ_ONLY, ROLE_CUSTOMER
 }

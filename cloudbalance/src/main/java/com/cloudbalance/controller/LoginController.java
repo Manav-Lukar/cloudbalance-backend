@@ -1,10 +1,14 @@
 package com.cloudbalance.controller;
 
 import com.cloudbalance.dto.UserDTO;
+import com.cloudbalance.dto.UserResponseDTO;
 import com.cloudbalance.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/login")
@@ -40,5 +44,12 @@ public class LoginController {
     public ResponseEntity<String> registerUser(@RequestBody UserDTO userDTO) {
         userService.createUser(userDTO);
         return ResponseEntity.ok("🎉 User registered successfully!");
+    }
+
+    // Public API — Fetch all users, no authentication required
+    @GetMapping("/users")
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
+        List<UserResponseDTO> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 }
