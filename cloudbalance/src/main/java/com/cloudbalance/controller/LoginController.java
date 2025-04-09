@@ -5,7 +5,6 @@ import com.cloudbalance.dto.UserResponseDTO;
 import com.cloudbalance.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,11 +41,15 @@ public class LoginController {
     // Public API — user registration
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody UserDTO userDTO) {
-        userService.createUser(userDTO);
-        return ResponseEntity.ok("🎉 User registered successfully!");
+        boolean result = userService.addUser(userDTO);
+        if (result) {
+            return ResponseEntity.ok("✅ User registered successfully.");
+        } else {
+            return ResponseEntity.badRequest().body("❌ Email already exists.");
+        }
     }
 
-    // Public API — Fetch all users, no authentication required
+    // Public API — fetch all users
     @GetMapping("/users")
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
         List<UserResponseDTO> users = userService.getAllUsers();

@@ -5,55 +5,52 @@ import com.cloudbalance.dto.UserResponseDTO;
 import com.cloudbalance.entity.User;
 import com.cloudbalance.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder; // ✅ Add this
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private PasswordEncoder passwordEncoder; // ✅ Inject PasswordEncoder
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+    public boolean addUser(UserDTO userDTO) {
+        Optional<User> existingUser = Optional.ofNullable(userRepository.findByEmail(userDTO.getEmail()));
+        if (existingUser.isPresent()) return false;
 
-    public void createUser(UserDTO userDTO) {
         User user = new User();
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
+
+        // ✅ Encode the password
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
-        // Ensure role starts with "ROLE_"
-        String role = userDTO.getRole();
+        // ✅ Prefix role with "ROLE_"
+        String role = userDTO.getRole().toUpperCase();
         if (!role.startsWith("ROLE_")) {
             role = "ROLE_" + role;
         }
         user.setRole(role);
 
         userRepository.save(user);
+        return true;
     }
 
     public List<UserResponseDTO> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users.stream()
+        return userRepository.findAll().stream()
                 .map(user -> new UserResponseDTO(
                         user.getFirstName(),
                         user.getLastName(),
                         user.getEmail(),
                         user.getRole()
-                ))
-                .collect(Collectors.toList());
+                )).collect(Collectors.toList());
     }
-
 }

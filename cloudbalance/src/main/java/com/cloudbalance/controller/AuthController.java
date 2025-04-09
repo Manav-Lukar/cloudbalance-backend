@@ -1,37 +1,57 @@
 package com.cloudbalance.controller;
 
+import com.cloudbalance.dto.LoginRequest;
 import com.cloudbalance.dto.LoginResponse;
 import com.cloudbalance.entity.User;
-import com.cloudbalance.service.UserService;
+import com.cloudbalance.repository.UserRepository;
+import com.cloudbalance.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final UserService userService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthController(UserService userService) {
-        this.userService = userService;
+    private JwtService jwtService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
+            );
+
+            User user = userRepository.findByEmail(loginRequest.getEmail());
+            String token = jwtService.generateToken((UserDetails) authentication.getPrincipal());
+
+            // ✅ Added email to response
+            return ResponseEntity.ok(new LoginResponse(
+                    "✅ Login successful",
+                    user.getRole(),
+                    token,
+                    user.getEmail()
+            ));
+        } catch (BadCredentialsException ex) {
+            return ResponseEntity.status(401).body("❌ Invalid email or password");
+        }
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<?> login(Authentication authentication) {
-        if (authentication == null || authentication.getName() == null) {
-            return ResponseEntity.status(401).body("Invalid credentials");
-        }
-
-        String email = authentication.getName();
-        User user = userService.findByEmail(email);
-
-        if (user == null) {
-            return ResponseEntity.status(404).body("User not found");
-        }
-
-        return ResponseEntity.ok(new LoginResponse("Login successful", user.getRole(), user.getEmail()));
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+        // If using only JWT, this is more of a frontend responsibility
+        return ResponseEntity.ok("✅ Logged out successfully.");
     }
 }
