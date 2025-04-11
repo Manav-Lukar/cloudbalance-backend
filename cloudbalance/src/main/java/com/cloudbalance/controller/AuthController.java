@@ -14,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -34,13 +36,14 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
             );
 
-            User user = userRepository.findByEmail(loginRequest.getEmail());
+            User user = userRepository.findByEmail(loginRequest.getEmail())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
             String token = jwtService.generateToken((UserDetails) authentication.getPrincipal());
 
-            // ✅ Added email to response
             return ResponseEntity.ok(new LoginResponse(
                     "✅ Login successful",
-                    user.getRole(),
+                    user.getRole().getName(),
                     token,
                     user.getEmail()
             ));
@@ -48,10 +51,8 @@ public class AuthController {
             return ResponseEntity.status(401).body("❌ Invalid email or password");
         }
     }
-
     @PostMapping("/logout")
     public ResponseEntity<String> logout() {
-        // If using only JWT, this is more of a frontend responsibility
         return ResponseEntity.ok("✅ Logged out successfully.");
     }
 }

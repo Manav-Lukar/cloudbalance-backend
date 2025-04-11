@@ -1,14 +1,12 @@
-// src/main/java/com/cloudbalance/dto/UserResponseDTO.java
 package com.cloudbalance.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserResponseDTO {
     private String firstName;
     private String lastName;

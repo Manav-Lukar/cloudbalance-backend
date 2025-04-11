@@ -2,10 +2,12 @@ package com.cloudbalance.service;
 
 import com.cloudbalance.dto.UserDTO;
 import com.cloudbalance.dto.UserResponseDTO;
+import com.cloudbalance.entity.Role;
 import com.cloudbalance.entity.User;
+import com.cloudbalance.repository.RoleRepository;
 import com.cloudbalance.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder; // ✅ Add this
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,26 +21,23 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // ✅ Inject PasswordEncoder
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public boolean addUser(UserDTO userDTO) {
-        Optional<User> existingUser = Optional.ofNullable(userRepository.findByEmail(userDTO.getEmail()));
-        if (existingUser.isPresent()) return false;
+        if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) return false;
+
+        Optional<Role> optionalRole = roleRepository.findByName(userDTO.getRole().toUpperCase());
+        if (optionalRole.isEmpty()) return false;
 
         User user = new User();
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
-
-        // ✅ Encode the password
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-
-        // ✅ Prefix role with "ROLE_"
-        String role = userDTO.getRole().toUpperCase();
-        if (!role.startsWith("ROLE_")) {
-            role = "ROLE_" + role;
-        }
-        user.setRole(role);
+        user.setRole(optionalRole.get());
 
         userRepository.save(user);
         return true;
@@ -50,7 +49,7 @@ public class UserService {
                         user.getFirstName(),
                         user.getLastName(),
                         user.getEmail(),
-                        user.getRole()
+                        user.getRole().getName()
                 )).collect(Collectors.toList());
     }
 }

@@ -16,47 +16,48 @@ public class CustomUserDetails implements UserDetails {
         this.user = user;
     }
 
+    // ✅ Return user role as a GrantedAuthority
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String role = String.valueOf(user.getRole());
-        // Ensure "ROLE_" prefix is used if Spring expects that format
-        if (!role.startsWith("ROLE_")) {
-            role = "ROLE_" + role;
-        }
+        // Use the getter method to access the role name
+        String role = "ROLE_" + user.getRole().getName();
         return Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
+    // ✅ Return hashed password
     @Override
     public String getPassword() {
-        return user.getPassword(); // Hashed (BCrypt) password
+        return user.getPassword();
     }
 
+    // ✅ Return email as username for authentication
     @Override
     public String getUsername() {
-        return user.getEmail(); // Used for authentication
+        return user.getEmail();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true; // Add logic here if needed
+        return true; // Add custom logic if needed
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true; // Add logic here if needed
+        return true; // Add custom logic if needed
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true; // Add logic here if needed
+        return true; // Add custom logic if needed
     }
 
     @Override
     public boolean isEnabled() {
-        return true; // Could check user.isActive() if such a field exists
+        return true; // Return user.isActive() if you track this in your entity
     }
 
+    // ✅ Helpful to access original User entity
     public User getUser() {
-        return user; // Helpful if you want to access full user info later
+        return this.user;
     }
 }

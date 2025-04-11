@@ -23,7 +23,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private JwtService jwtService;
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -35,25 +35,29 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = null;
         String email = null;
 
-        // Extract JWT from header
+        // ✅ Extract JWT token from Authorization header
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
-            email = jwtService.extractUsername(token);
+            email = jwtService.extractUsername(token); // This is typically the user's email
         }
 
-        // Validate and set authentication
+        // ✅ Validate and set authentication in SecurityContext
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
 
             if (jwtService.validateToken(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities()
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities() // This now includes roles from your Role entity
                 );
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 
+        // ✅ Continue with the filter chain
         filterChain.doFilter(request, response);
     }
 }

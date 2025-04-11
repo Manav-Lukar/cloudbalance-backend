@@ -11,16 +11,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
+    @Autowired
+    public CustomUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    /**
+     * This method loads the user from the database by email (username in our case).
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with email: " + email);
-        }
+        // ✅ Use email as the identifier for login
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
-        return new CustomUserDetails(user); // ✅ Use the custom UserDetails implementation
+        // ✅ Wrap the User entity in CustomUserDetails
+        return new CustomUserDetails(user);
     }
 }

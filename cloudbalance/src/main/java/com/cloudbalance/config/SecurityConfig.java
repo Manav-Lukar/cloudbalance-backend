@@ -2,11 +2,13 @@ package com.cloudbalance.config;
 
 import com.cloudbalance.filter.JwtAuthFilter;
 import com.cloudbalance.service.CustomUserDetailsService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,16 +16,16 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
-    private final CustomUserDetailsService userDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
     private final JwtAuthFilter jwtAuthFilter;
 
-    public SecurityConfig(CustomUserDetailsService userDetailsService, JwtAuthFilter jwtAuthFilter) {
-        this.userDetailsService = userDetailsService;
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService, JwtAuthFilter jwtAuthFilter) {
+        this.customUserDetailsService = customUserDetailsService;
         this.jwtAuthFilter = jwtAuthFilter;
     }
 
@@ -31,15 +33,16 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {}) // enable CORS using the bean below
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/auth/login",
                                 "/login/register",
                                 "/login/users"
                         ).permitAll()
-                        .requestMatchers("/login/admin").hasRole("ADMIN")
-                        .requestMatchers("/login/readonly").hasRole("READ_ONLY")
-                        .requestMatchers("/login/customer").hasRole("CUSTOMER")
+                        .requestMatchers("/login/admin").hasAuthority("ADMIN")
+                        .requestMatchers("/login/readonly").hasAuthority("READ_ONLY")
+                        .requestMatchers("/login/customer").hasAuthority("CUSTOMER")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex
@@ -48,7 +51,9 @@ public class SecurityConfig {
                             response.getWriter().write("Unauthorized access");
                         })
                 )
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(sess -> sess
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -56,14 +61,16 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        AuthenticationManagerBuilder builder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+        builder.userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
         return builder.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // secure and recommended
     }
 
     @Bean
@@ -73,8 +80,9 @@ public class SecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000")
-                        .allowedMethods("*")
-                        .allowedHeaders("*");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
