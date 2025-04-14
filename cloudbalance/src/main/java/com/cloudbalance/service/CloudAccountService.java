@@ -1,5 +1,6 @@
 package com.cloudbalance.service;
 
+import com.cloudbalance.dto.CloudAccountsDto;
 import com.cloudbalance.dto.CreateUserRequest;
 import com.cloudbalance.entity.CloudAccount;
 import com.cloudbalance.entity.Role;
@@ -13,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,6 +40,19 @@ public class CloudAccountService {
         return cloudAccountRepository.findAll();
     }
 
+    public List<CloudAccountsDto> getAllCloudAccountsDto() {
+        List<CloudAccount> accounts = cloudAccountRepository.findAll();
+        return accounts.stream().map(account -> {
+            CloudAccountsDto dto = new CloudAccountsDto();
+            dto.setId(account.getId());
+            dto.setAccountName(account.getAccountName());
+            dto.setProvider(account.getProvider());
+            dto.setAccountId(account.getAccountId());
+            dto.setIsOrphaned(account.getIsOrphaned());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
     public List<CloudAccount> getOrphanAccounts() {
         return cloudAccountRepository.findByIsOrphanedTrue();
     }
@@ -58,7 +73,6 @@ public class CloudAccountService {
                     .user(user)
                     .cloudAccount(account)
                     .assignedBy(adminUser)
-                    .assignedAt(LocalDateTime.now())
                     .build();
 
             mappingRepository.save(mapping);
@@ -72,14 +86,14 @@ public class CloudAccountService {
             throw new RuntimeException("Email already exists.");
         }
 
-        Role role = roleRepository.findByName(request.getRoleName().toUpperCase())
+        Role role = roleRepository.findByName(request.getRole().toUpperCase())
                 .orElseThrow(() -> new RuntimeException("Role not found."));
 
         User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode("Default@123")) // or use custom value
+                .password(passwordEncoder.encode("Default@123")) // Default password
                 .isActive(true)
                 .role(role)
                 .build();
@@ -95,7 +109,6 @@ public class CloudAccountService {
                         .user(user)
                         .cloudAccount(account)
                         .assignedBy(adminUser)
-                        .assignedAt(LocalDateTime.now())
                         .build();
 
                 mappingRepository.save(mapping);

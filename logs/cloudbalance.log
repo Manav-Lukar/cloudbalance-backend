@@ -1,0 +1,190 @@
+2025-04-14T00:09:56.863+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:09:56.873+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:09:56.874+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:09:56.875+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:09:57.772+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/cloud-accounts
+2025-04-14T00:09:57.777+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
+2025-04-14T00:09:57.797+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
+2025-04-14T00:09:57.798+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
+2025-04-14T00:11:01.225+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:01.226+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:01.226+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:01.227+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-5] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:11:20.728+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:20.729+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:20.729+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:20.730+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:11:24.926+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:24.927+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:24.927+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:24.928+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:11:27.083+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:27.084+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:27.084+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:27.085+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:11:30.145+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:30.146+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:30.146+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:30.147+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:11:31.518+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:31.520+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:31.520+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:31.522+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-1] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:11:32.429+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:32.430+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:32.430+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:32.431+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:11:57.773+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:11:57.774+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:11:57.774+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:11:57.775+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:12:00.935+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:12:00.935+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:12:00.936+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:12:00.938+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:12:01.958+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:12:01.958+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:12:01.958+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:12:01.959+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:12:37.452+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:12:37.453+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:12:37.453+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:12:37.454+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-5] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:12:40.365+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/login
+2025-04-14T00:12:40.369+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-14T00:12:40.369+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:12:40.369+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-14T00:12:40.370+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
+2025-04-14T00:12:40.431+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-14T00:12:40.434+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
+2025-04-14T00:12:41.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:12:41.450+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:12:41.450+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:12:41.451+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:12:54.448+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:12:54.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:12:54.450+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:12:54.450+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:13:09.716+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:13:09.716+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:13:09.716+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:13:09.717+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-1] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:13:11.268+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:13:11.269+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:13:11.269+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:13:11.270+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:13:13.233+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:13:13.235+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:13:13.235+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:13:13.236+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:13:15.377+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:13:15.378+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:13:15.378+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:13:15.379+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T00:13:16.928+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T00:13:16.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T00:13:16.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T00:13:16.930+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T09:26:43.493+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
+2025-04-14T09:26:43.519+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
+2025-04-14T09:26:43.519+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
+2025-04-14T09:26:54.842+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T09:26:54.842+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T09:26:54.842+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T09:26:54.843+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T09:27:03.905+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
+2025-04-14T09:27:03.926+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
+2025-04-14T09:27:03.927+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
+2025-04-14T09:27:24.045+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T09:27:24.045+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T09:27:24.046+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T09:27:24.046+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:27:55.811+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:27:55.812+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:27:55.812+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:27:55.813+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:27:56.869+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:27:56.870+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:27:56.870+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:27:56.871+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:41:31.928+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:41:31.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:41:31.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:41:31.930+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:42:03.523+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:42:03.524+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:42:03.524+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:42:03.525+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-5] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:42:12.499+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:42:12.500+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:42:12.500+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:42:12.501+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:42:15.446+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/login
+2025-04-14T10:42:15.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-14T10:42:15.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:42:15.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-14T10:42:15.450+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
+2025-04-14T10:42:15.505+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-14T10:42:15.508+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
+2025-04-14T10:42:16.552+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:42:16.553+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:42:16.554+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:42:16.555+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:42:19.864+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/cloud-accounts
+2025-04-14T10:42:19.868+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
+2025-04-14T10:42:19.893+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
+2025-04-14T10:42:19.893+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
+2025-04-14T10:49:44.252+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:49:44.253+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:49:44.253+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:49:44.254+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:49:55.484+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:49:55.485+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:49:55.486+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:49:55.487+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:50:57.320+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:50:57.320+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:50:57.320+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:50:57.321+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T10:59:53.004+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-14T10:59:53.004+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:59:53.005+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-14T10:59:53.006+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
+2025-04-14T10:59:53.067+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-14T10:59:53.071+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
+2025-04-14T10:59:54.105+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T10:59:54.107+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T10:59:54.107+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T10:59:54.109+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T11:01:22.618+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-14T11:01:22.619+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T11:01:22.619+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-14T11:01:22.620+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
+2025-04-14T11:01:22.679+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to authenticate since password does not match stored value
+2025-04-14T11:01:22.784+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to authenticate since password does not match stored value
+2025-04-14T11:01:22.789+05:30  WARN 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.AuthController            : 🚫 Invalid credentials for email: admin@cloudbalance.com
+2025-04-14T11:01:27.134+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-14T11:01:27.135+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T11:01:27.135+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-14T11:01:27.137+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
+2025-04-14T11:01:27.203+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-14T11:01:27.205+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
+2025-04-14T11:01:28.246+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T11:01:28.247+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T11:01:28.247+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T11:01:28.248+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T11:14:02.002+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/login
+2025-04-14T11:14:02.007+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-14T11:14:02.008+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T11:14:02.008+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-14T11:14:02.010+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
+2025-04-14T11:14:02.066+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-14T11:14:02.068+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
+2025-04-14T11:14:03.104+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-14T11:14:03.105+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-14T11:14:03.106+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-14T11:14:03.107+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.LoginController           : 📋 Fetching all users
+2025-04-14T11:14:05.017+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/cloud-accounts
+2025-04-14T11:14:05.021+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
+2025-04-14T11:14:05.040+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
+2025-04-14T11:14:05.041+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts

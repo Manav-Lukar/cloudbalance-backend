@@ -1,5 +1,6 @@
 package com.cloudbalance.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,17 +25,15 @@ public class User {
     @Column(nullable = false)
     private String lastName; // ✅ last name of the user
 
-
     @Column(unique = true, nullable = false)
     private String email; // ✅ email used for login
 
     @Column(nullable = false)
-    private String password; // ✅ plain password (ideally hashed)
+    private String password;
 
     private Boolean isActive = true;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
-
+    @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -42,5 +41,6 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference // ✅ Prevents recursive serialization
     private List<UserCloudAccountMap> cloudAccounts;
 }

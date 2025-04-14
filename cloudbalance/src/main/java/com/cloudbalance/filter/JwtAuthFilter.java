@@ -1,5 +1,7 @@
 package com.cloudbalance.filter;
 
+import com.cloudbalance.entity.User;
+import com.cloudbalance.repository.UserRepository;
 import com.cloudbalance.service.CustomUserDetailsService;
 import com.cloudbalance.service.JwtService;
 import jakarta.servlet.FilterChain;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -24,6 +27,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -38,7 +44,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         // ✅ Extract JWT token from Authorization header
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
-            email = jwtService.extractUsername(token); // This is typically the user's email
+            email = jwtService.extractUsername(token); // Typically user's email
         }
 
         // ✅ Validate and set authentication in SecurityContext
@@ -49,11 +55,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
-                        userDetails.getAuthorities() // This now includes roles from your Role entity
+                        userDetails.getAuthorities()
                 );
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+
+                // ✅ Update last login time
+                userRepository.findByEmail(email).ifPresent(user -> {
+                    user.setLastLogin(LocalDateTime.now());
+                    userRepository.save(user);
+                });
             }
         }
 

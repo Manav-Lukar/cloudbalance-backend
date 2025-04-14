@@ -1,15 +1,19 @@
 package com.cloudbalance.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserResponseDTO {
     private String firstName;
     private String lastName;
     private String email;
+    private LocalDateTime lastLogin;
     private String role;
+
 }

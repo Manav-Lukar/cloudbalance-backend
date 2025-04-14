@@ -1,9 +1,8 @@
 package com.cloudbalance.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -18,6 +17,7 @@ public class UserCloudAccountMap {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference // ✅ Prevent infinite loop with User.cloudAccounts
     private User user;
 
     @ManyToOne
@@ -26,7 +26,7 @@ public class UserCloudAccountMap {
 
     @ManyToOne
     @JoinColumn(name = "assigned_by_id")
+    @JsonBackReference(value = "assignedByRef") // ✅ Prevent recursion through assignedBy
     private User assignedBy; // Admin who assigned
 
-    private LocalDateTime assignedAt = LocalDateTime.now();
 }

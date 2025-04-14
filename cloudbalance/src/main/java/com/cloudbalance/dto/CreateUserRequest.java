@@ -9,6 +9,6 @@ public class CreateUserRequest {
     private String firstName;
     private String lastName;
     private String email;
-    private String roleName;
+    private String role;
     private List<Long> cloudAccountIds; // Optional, only if role is CUSTOMER
 }
