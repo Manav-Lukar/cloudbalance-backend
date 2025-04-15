@@ -1,190 +1,355 @@
-2025-04-14T00:09:56.863+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:09:56.873+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:09:56.874+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:09:56.875+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:09:57.772+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/cloud-accounts
-2025-04-14T00:09:57.777+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
-2025-04-14T00:09:57.797+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
-2025-04-14T00:09:57.798+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
-2025-04-14T00:11:01.225+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:01.226+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:01.226+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:01.227+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-5] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:11:20.728+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:20.729+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:20.729+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:20.730+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:11:24.926+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:24.927+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:24.927+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:24.928+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:11:27.083+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:27.084+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:27.084+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:27.085+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:11:30.145+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:30.146+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:30.146+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:30.147+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:11:31.518+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:31.520+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:31.520+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:31.522+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-1] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:11:32.429+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:32.430+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:32.430+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:32.431+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:11:57.773+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:11:57.774+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:11:57.774+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:11:57.775+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:12:00.935+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:12:00.935+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:12:00.936+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:12:00.938+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:12:01.958+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:12:01.958+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:12:01.958+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:12:01.959+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:12:37.452+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:12:37.453+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:12:37.453+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:12:37.454+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-5] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:12:40.365+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/login
-2025-04-14T00:12:40.369+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
-2025-04-14T00:12:40.369+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:12:40.369+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
-2025-04-14T00:12:40.370+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
-2025-04-14T00:12:40.431+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
-2025-04-14T00:12:40.434+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
-2025-04-14T00:12:41.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:12:41.450+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:12:41.450+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:12:41.451+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:12:54.448+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:12:54.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:12:54.450+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:12:54.450+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:13:09.716+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:13:09.716+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:13:09.716+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:13:09.717+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-1] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:13:11.268+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:13:11.269+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:13:11.269+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:13:11.270+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:13:13.233+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:13:13.235+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:13:13.235+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:13:13.236+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:13:15.377+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:13:15.378+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:13:15.378+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:13:15.379+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T00:13:16.928+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T00:13:16.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T00:13:16.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T00:13:16.930+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T09:26:43.493+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
-2025-04-14T09:26:43.519+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
-2025-04-14T09:26:43.519+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
-2025-04-14T09:26:54.842+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T09:26:54.842+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T09:26:54.842+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T09:26:54.843+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T09:27:03.905+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
-2025-04-14T09:27:03.926+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
-2025-04-14T09:27:03.927+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
-2025-04-14T09:27:24.045+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T09:27:24.045+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T09:27:24.046+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T09:27:24.046+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:27:55.811+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:27:55.812+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:27:55.812+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:27:55.813+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:27:56.869+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:27:56.870+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:27:56.870+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:27:56.871+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:41:31.928+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:41:31.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:41:31.929+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:41:31.930+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:42:03.523+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:42:03.524+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:42:03.524+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:42:03.525+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-5] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:42:12.499+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:42:12.500+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:42:12.500+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:42:12.501+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:42:15.446+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/login
-2025-04-14T10:42:15.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
-2025-04-14T10:42:15.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:42:15.449+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
-2025-04-14T10:42:15.450+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
-2025-04-14T10:42:15.505+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
-2025-04-14T10:42:15.508+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
-2025-04-14T10:42:16.552+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:42:16.553+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:42:16.554+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:42:16.555+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:42:19.864+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/cloud-accounts
-2025-04-14T10:42:19.868+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
-2025-04-14T10:42:19.893+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
-2025-04-14T10:42:19.893+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
-2025-04-14T10:49:44.252+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:49:44.253+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:49:44.253+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:49:44.254+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:49:55.484+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:49:55.485+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:49:55.486+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:49:55.487+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-6] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:50:57.320+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:50:57.320+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:50:57.320+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:50:57.321+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T10:59:53.004+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
-2025-04-14T10:59:53.004+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:59:53.005+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
-2025-04-14T10:59:53.006+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
-2025-04-14T10:59:53.067+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
-2025-04-14T10:59:53.071+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-10] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
-2025-04-14T10:59:54.105+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T10:59:54.107+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T10:59:54.107+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T10:59:54.109+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T11:01:22.618+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
-2025-04-14T11:01:22.619+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T11:01:22.619+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
-2025-04-14T11:01:22.620+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
-2025-04-14T11:01:22.679+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to authenticate since password does not match stored value
-2025-04-14T11:01:22.784+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to authenticate since password does not match stored value
-2025-04-14T11:01:22.789+05:30  WARN 21967 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.AuthController            : 🚫 Invalid credentials for email: admin@cloudbalance.com
-2025-04-14T11:01:27.134+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
-2025-04-14T11:01:27.135+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T11:01:27.135+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
-2025-04-14T11:01:27.137+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
-2025-04-14T11:01:27.203+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
-2025-04-14T11:01:27.205+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-3] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
-2025-04-14T11:01:28.246+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T11:01:28.247+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T11:01:28.247+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T11:01:28.248+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T11:14:02.002+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/login
-2025-04-14T11:14:02.007+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
-2025-04-14T11:14:02.008+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T11:14:02.008+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
-2025-04-14T11:14:02.010+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.AuthController            : 🔐 Login attempt for email: admin@cloudbalance.com
-2025-04-14T11:14:02.066+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
-2025-04-14T11:14:02.068+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-8] c.c.controller.AuthController            : ✅ Login successful for user: admin@cloudbalance.com
-2025-04-14T11:14:03.104+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login/users
-2025-04-14T11:14:03.105+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-04-14T11:14:03.106+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /login/users
-2025-04-14T11:14:03.107+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.LoginController           : 📋 Fetching all users
-2025-04-14T11:14:05.017+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/cloud-accounts
-2025-04-14T11:14:05.021+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
-2025-04-14T11:14:05.040+05:30 DEBUG 21967 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
-2025-04-14T11:14:05.041+05:30  INFO 21967 --- [cloudbalance] [http-nio-8080-exec-9] c.c.c.CloudAccountAdminController        : 📥 Fetching all cloud accounts
+2025-04-15T07:03:39.493+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /login/register
+2025-04-15T07:03:39.501+05:30 ERROR 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2025-04-14T21:47:09Z. Current time: 2025-04-15T01:33:39Z, a difference of 13590501 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:427) ~[jjwt-impl-0.11.5.jar:0.11.5]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:529) ~[jjwt-impl-0.11.5.jar:0.11.5]
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:589) ~[jjwt-impl-0.11.5.jar:0.11.5]
+	at com.cloudbalance.service.JwtService.extractAllClaims(JwtService.java:72) ~[main/:na]
+	at com.cloudbalance.service.JwtService.extractClaim(JwtService.java:24) ~[main/:na]
+	at com.cloudbalance.service.JwtService.extractUsername(JwtService.java:19) ~[main/:na]
+	at com.cloudbalance.filter.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:47) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238) ~[spring-security-config-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-04-15T07:03:39.502+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /error
+2025-04-15T07:03:39.503+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:03:39.503+05:30  WARN 135681 --- [cloudbalance] [http-nio-8080-exec-5] com.cloudbalance.config.SecurityConfig   : Unauthorized access attempt: Full authentication is required to access this resource
+2025-04-15T07:03:58.505+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-15T07:03:58.506+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:03:58.506+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-15T07:03:58.506+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-7] c.c.controller.AuthController            : Login attempt for email: admin@cloudbalance.com
+2025-04-15T07:03:58.563+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-7] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-15T07:03:58.570+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-7] com.cloudbalance.service.UserService     : ✅ Login successful for user: admin@cloudbalance.com
+2025-04-15T07:04:13.627+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /login/register
+2025-04-15T07:04:13.657+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /login/register
+2025-04-15T07:04:13.667+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-8] com.cloudbalance.service.UserService     : 📝 Registering new user: amit@example.com
+2025-04-15T07:04:13.676+05:30 ERROR 135681 --- [cloudbalance] [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: rawPassword cannot be null] with root cause
+
+java.lang.IllegalArgumentException: rawPassword cannot be null
+	at org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.encode(BCryptPasswordEncoder.java:107) ~[spring-security-crypto-6.4.4.jar:6.4.4]
+	at com.cloudbalance.service.UserService.registerUser(UserService.java:102) ~[main/:na]
+	at com.cloudbalance.controller.LoginController.registerUser(LoginController.java:41) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.39.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.39.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at com.cloudbalance.filter.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:73) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243) ~[spring-webmvc-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238) ~[spring-security-config-6.4.4.jar:6.4.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.5.jar:6.2.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.39.jar:10.1.39]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-04-15T07:04:13.679+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /error
+2025-04-15T07:04:13.680+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:04:13.680+05:30  WARN 135681 --- [cloudbalance] [http-nio-8080-exec-8] com.cloudbalance.config.SecurityConfig   : Unauthorized access attempt: Full authentication is required to access this resource
+2025-04-15T07:05:39.309+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /login/register
+2025-04-15T07:05:39.317+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /login/register
+2025-04-15T07:05:39.317+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-9] com.cloudbalance.service.UserService     : 📝 Registering new user: john.doe@example.com
+2025-04-15T07:05:39.381+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-9] com.cloudbalance.service.UserService     : ✅ User registered successfully: john.doe@example.com
+2025-04-15T07:05:47.438+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /login/register
+2025-04-15T07:05:47.439+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:05:47.439+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /login/register
+2025-04-15T07:05:47.439+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-1] com.cloudbalance.service.UserService     : 📝 Registering new user: john.doe@example.com
+2025-04-15T07:05:47.441+05:30  WARN 135681 --- [cloudbalance] [http-nio-8080-exec-1] com.cloudbalance.service.UserService     : 🚫 Registration failed — Email exists: john.doe@example.com
+2025-04-15T07:06:02.860+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /login/register
+2025-04-15T07:06:02.860+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:06:02.860+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /login/register
+2025-04-15T07:06:02.861+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-3] com.cloudbalance.service.UserService     : 📝 Registering new user: john.de@example.com
+2025-04-15T07:06:02.921+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-3] com.cloudbalance.service.UserService     : ✅ User registered successfully: john.de@example.com
+2025-04-15T07:06:21.769+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/login
+2025-04-15T07:06:21.774+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-15T07:06:21.774+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:06:21.774+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-15T07:06:21.775+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-5] c.c.controller.AuthController            : Login attempt for email: john.de@example.com
+2025-04-15T07:06:21.837+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-5] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-15T07:06:21.844+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-5] com.cloudbalance.service.UserService     : ✅ Login successful for user: john.de@example.com
+2025-04-15T07:06:21.849+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing OPTIONS /login/authenticate
+2025-04-15T07:06:21.851+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /login/authenticate
+2025-04-15T07:06:21.858+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /login/authenticate
+2025-04-15T07:06:21.859+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-8] com.cloudbalance.service.UserService     : 🔐 Authenticating user: john.de@example.com
+2025-04-15T07:06:21.915+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-8] com.cloudbalance.service.UserService     : ✅ Authentication successful: john.de@example.com
+2025-04-15T07:06:32.235+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing OPTIONS /auth/logout
+2025-04-15T07:06:32.241+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /auth/logout
+2025-04-15T07:06:32.258+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /auth/logout
+2025-04-15T07:06:32.258+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-2] c.c.controller.AuthController            : Logout requested
+2025-04-15T07:09:59.077+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-15T07:09:59.078+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:09:59.078+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-15T07:09:59.079+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-4] c.c.controller.AuthController            : Login attempt for email: akhil@gmail.com
+2025-04-15T07:09:59.146+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-15T07:09:59.153+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-4] com.cloudbalance.service.UserService     : ✅ Login successful for user: akhil@gmail.com
+2025-04-15T07:09:59.157+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /login/authenticate
+2025-04-15T07:09:59.166+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /login/authenticate
+2025-04-15T07:09:59.167+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-3] com.cloudbalance.service.UserService     : 🔐 Authenticating user: akhil@gmail.com
+2025-04-15T07:09:59.224+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-3] com.cloudbalance.service.UserService     : ✅ Authentication successful: akhil@gmail.com
+2025-04-15T07:10:00.317+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-15T07:10:00.317+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:10:00.317+05:30 DEBUG 135681 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-15T07:10:00.317+05:30  INFO 135681 --- [cloudbalance] [http-nio-8080-exec-6] com.cloudbalance.service.UserService     : 📋 Fetching all users
+2025-04-15T07:12:26.977+05:30  INFO 135681 --- [cloudbalance] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-15T07:12:26.987+05:30  INFO 135681 --- [cloudbalance] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-15T07:12:27.006+05:30  INFO 135681 --- [cloudbalance] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15T07:12:27.032+05:30  INFO 135681 --- [cloudbalance] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-15T07:12:27.041+05:30  INFO 135681 --- [cloudbalance] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-15T07:12:34.442+05:30  INFO 229424 --- [cloudbalance] [restartedMain] c.cloudbalance.CloudbalanceApplication   : Starting CloudbalanceApplication using Java 21.0.6 with PID 229424 (/home/manav/Downloads/cloudbalance (1)/cloudbalance/build/classes/java/main started by manav in /home/manav/Downloads/cloudbalance (1))
+2025-04-15T07:12:34.442+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] c.cloudbalance.CloudbalanceApplication   : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-15T07:12:34.443+05:30  INFO 229424 --- [cloudbalance] [restartedMain] c.cloudbalance.CloudbalanceApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-04-15T07:12:34.470+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-04-15T07:12:34.471+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-04-15T07:12:35.090+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-04-15T07:12:35.091+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-04-15T07:12:35.129+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.cloudbalance.repository.CloudAccountRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-04-15T07:12:35.130+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.cloudbalance.repository.DashboardRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-04-15T07:12:35.131+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.cloudbalance.repository.RoleDashboardAccessMapRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-04-15T07:12:35.132+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.cloudbalance.repository.RoleRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-04-15T07:12:35.133+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.cloudbalance.repository.UserCloudAccountMapRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-04-15T07:12:35.135+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.cloudbalance.repository.UserRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-04-15T07:12:35.135+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 0 JDBC repository interfaces.
+2025-04-15T07:12:35.145+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-04-15T07:12:35.146+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-15T07:12:35.171+05:30  INFO 229424 --- [cloudbalance] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 6 JPA repository interfaces.
+2025-04-15T07:12:35.620+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-15T07:12:35.631+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-15T07:12:35.632+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-04-15T07:12:35.656+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-15T07:12:35.656+05:30  INFO 229424 --- [cloudbalance] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1185 ms
+2025-04-15T07:12:35.761+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-15T07:12:35.789+05:30  INFO 229424 --- [cloudbalance] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-04-15T07:12:35.810+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-15T07:12:36.016+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-15T07:12:36.037+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-15T07:12:36.313+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44d8aa61
+2025-04-15T07:12:36.315+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-15T07:12:36.370+05:30  INFO 229424 --- [cloudbalance] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.41
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-15T07:12:37.027+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-15T07:12:37.087+05:30  INFO 229424 --- [cloudbalance] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15T07:12:37.291+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.filter.JwtAuthFilter    : Filter 'jwtAuthFilter' configured for use
+2025-04-15T07:12:37.298+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : SecurityConfig initialized
+2025-04-15T07:12:37.323+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : Setting up CORS mappings
+2025-04-15T07:12:37.328+05:30  WARN 229424 --- [cloudbalance] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-15T07:12:37.346+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : Creating BCryptPasswordEncoder bean
+2025-04-15T07:12:37.350+05:30  INFO 229424 --- [cloudbalance] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-04-15T07:12:37.378+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : Building AuthenticationManager...
+2025-04-15T07:12:37.384+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : AuthenticationManager built
+2025-04-15T07:12:37.438+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : Configuring CORS for http://localhost:3000
+2025-04-15T07:12:37.554+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : Configuring SecurityFilterChain...
+2025-04-15T07:12:37.555+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : CORS enabled
+2025-04-15T07:12:37.574+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : Setting session to stateless
+2025-04-15T07:12:37.574+05:30  INFO 229424 --- [cloudbalance] [restartedMain] com.cloudbalance.config.SecurityConfig   : SecurityFilterChain configured successfully
+2025-04-15T07:12:37.591+05:30 DEBUG 229424 --- [cloudbalance] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-04-15T07:12:37.837+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-04-15T07:12:37.870+05:30  INFO 229424 --- [cloudbalance] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-15T07:12:37.883+05:30  INFO 229424 --- [cloudbalance] [restartedMain] c.cloudbalance.CloudbalanceApplication   : Started CloudbalanceApplication in 3.685 seconds (process running for 4.117)
+2025-04-15T07:12:37.886+05:30  INFO 229424 --- [cloudbalance] [restartedMain] c.cloudbalance.CloudbalanceApplication   : Cloudbalance application started successfully.
+2025-04-15T07:12:37.888+05:30 ERROR 229424 --- [cloudbalance] [main] c.cloudbalance.CloudbalanceApplication   : Error starting Cloudbalance application: 
+
+org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException: null
+	at org.springframework.boot.devtools.restart.SilentExitExceptionHandler.exitCurrentThread(SilentExitExceptionHandler.java:92) ~[spring-boot-devtools-3.4.4.jar:3.4.4]
+	at org.springframework.boot.devtools.restart.Restarter.immediateRestart(Restarter.java:179) ~[spring-boot-devtools-3.4.4.jar:3.4.4]
+	at org.springframework.boot.devtools.restart.Restarter.initialize(Restarter.java:163) ~[spring-boot-devtools-3.4.4.jar:3.4.4]
+	at org.springframework.boot.devtools.restart.Restarter.initialize(Restarter.java:537) ~[spring-boot-devtools-3.4.4.jar:3.4.4]
+	at org.springframework.boot.devtools.restart.RestartApplicationListener.onApplicationStartingEvent(RestartApplicationListener.java:98) ~[spring-boot-devtools-3.4.4.jar:3.4.4]
+	at org.springframework.boot.devtools.restart.RestartApplicationListener.onApplicationEvent(RestartApplicationListener.java:51) ~[spring-boot-devtools-3.4.4.jar:3.4.4]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:138) ~[spring-context-6.2.5.jar:6.2.5]
+	at org.springframework.boot.context.event.EventPublishingRunListener.multicastInitialEvent(EventPublishingRunListener.java:136) ~[spring-boot-3.4.4.jar:3.4.4]
+	at org.springframework.boot.context.event.EventPublishingRunListener.starting(EventPublishingRunListener.java:75) ~[spring-boot-3.4.4.jar:3.4.4]
+	at org.springframework.boot.SpringApplicationRunListeners.lambda$starting$0(SpringApplicationRunListeners.java:54) ~[spring-boot-3.4.4.jar:3.4.4]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118) ~[spring-boot-3.4.4.jar:3.4.4]
+	at org.springframework.boot.SpringApplicationRunListeners.starting(SpringApplicationRunListeners.java:54) ~[spring-boot-3.4.4.jar:3.4.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310) ~[spring-boot-3.4.4.jar:3.4.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.4.jar:3.4.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.4.jar:3.4.4]
+	at com.cloudbalance.CloudbalanceApplication.main(CloudbalanceApplication.java:21) ~[main/:na]
+
+2025-04-15T07:12:42.342+05:30  INFO 229424 --- [cloudbalance] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15T07:12:42.343+05:30  INFO 229424 --- [cloudbalance] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-15T07:12:42.344+05:30  INFO 229424 --- [cloudbalance] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-15T07:12:42.355+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /auth/logout
+2025-04-15T07:12:42.523+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /auth/logout
+2025-04-15T07:12:46.660+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-15T07:12:46.662+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:12:46.663+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-15T07:12:46.807+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-15T07:12:46.837+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /login/authenticate
+2025-04-15T07:12:46.861+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /login/authenticate
+2025-04-15T07:12:47.962+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login/users
+2025-04-15T07:12:47.964+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:12:47.965+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login/users
+2025-04-15T07:12:51.745+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/cloud-accounts
+2025-04-15T07:12:51.753+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /admin/cloud-accounts
+2025-04-15T07:12:51.783+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /admin/cloud-accounts
+2025-04-15T07:13:32.250+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing OPTIONS /admin/add-user
+2025-04-15T07:13:32.265+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /admin/add-user
+2025-04-15T07:13:32.316+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /admin/add-user
+2025-04-15T07:13:36.502+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /auth/logout
+2025-04-15T07:13:36.538+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /auth/logout
+2025-04-15T07:13:51.418+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2025-04-15T07:13:51.420+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15T07:13:51.420+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2025-04-15T07:13:51.482+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-10] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-04-15T07:13:51.489+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /login/authenticate
+2025-04-15T07:13:51.516+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /login/authenticate
+2025-04-15T07:13:59.918+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /auth/logout
+2025-04-15T07:13:59.963+05:30 DEBUG 229424 --- [cloudbalance] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /auth/logout

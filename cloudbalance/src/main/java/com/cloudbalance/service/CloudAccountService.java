@@ -86,6 +86,10 @@ public class CloudAccountService {
             throw new RuntimeException("Email already exists.");
         }
 
+        if (request.getPassword() == null || request.getPassword().isBlank()) {
+            throw new RuntimeException("Password must not be empty.");
+        }
+
         Role role = roleRepository.findByName(request.getRole().toUpperCase())
                 .orElseThrow(() -> new RuntimeException("Role not found."));
 
@@ -93,7 +97,7 @@ public class CloudAccountService {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode("Default@123")) // Default password
+                .password(passwordEncoder.encode(request.getPassword())) // ✅ user-defined password
                 .isActive(true)
                 .role(role)
                 .build();
@@ -116,4 +120,5 @@ public class CloudAccountService {
             cloudAccountRepository.saveAll(accounts);
         }
     }
+
 }

@@ -36,6 +36,15 @@ public class User {
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
+//    @Column( length = 500)
+//    private String refreshToken;
+//
+//    @Column(length = 500)
+//    private String accessToken;
+//
+//    private boolean blacklisted = false;
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
@@ -43,4 +52,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference // ✅ Prevents recursive serialization
     private List<UserCloudAccountMap> cloudAccounts;
+
+
 }
