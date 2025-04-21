@@ -7,8 +7,7 @@ import com.cloudbalance.entity.UserCloudAccountMap;
 import com.cloudbalance.repository.RoleRepository;
 import com.cloudbalance.repository.UserRepository;
 import com.cloudbalance.repository.UserCloudAccountMapRepository;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,15 +37,18 @@ public class UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    // User registration
+    @Autowired
+    private JwtService jwtService; // ✅ Inject JwtService
+
+    // ✅ User registration
     public boolean addUser(UserDTO userDTO) {
         if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
-            return false; // email already exists
+            return false;
         }
 
         Optional<Role> optionalRole = roleRepository.findByName(userDTO.getRole().toUpperCase());
         if (optionalRole.isEmpty()) {
-            return false; // role not found
+            return false;
         }
 
         User user = new User();
@@ -55,13 +57,13 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setRole(optionalRole.get());
-        user.setLastLogin(null); // set to null initially
+        user.setLastLogin(null);
 
         userRepository.save(user);
         return true;
     }
 
-    // User login (authentication + lastLoginTime update)
+    // ✅ User login
     public LoginResponse authenticateUser(LoginRequest loginRequest) {
         Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getEmail());
         if (optionalUser.isPresent()) {
@@ -69,10 +71,10 @@ public class UserService {
             if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
                 user.setLastLogin(LocalDateTime.now());
 
-                // Generate refresh token and store it in the user record
-                String refreshToken = generateRefreshToken(user.getEmail());
+                String refreshToken = jwtService.generateRefreshToken(user.getEmail());
                 user.setRefreshToken(refreshToken);
-                userRepository.save(user); // Save the updated user with the refresh token
+
+                userRepository.save(user);
 
                 return new LoginResponse(
                         user.getFirstName(),
@@ -86,20 +88,7 @@ public class UserService {
         return null;
     }
 
-    // Method to generate refresh token
-    private String generateRefreshToken(String email) {
-        long now = System.currentTimeMillis();
-        long expirationMillis = 1000 * 60 * 15; // 15 minutes expiration
-
-        return Jwts.builder()
-                .setSubject(email)
-                .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now + expirationMillis))
-                .signWith(SignatureAlgorithm.HS256, "secure-key") // Use a secure key
-                .compact();
-    }
-
-    // Fetch all users with cloud accounts
+    // ✅ Get all users
     public List<UserResponseDTO> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(user -> new UserResponseDTO(
@@ -113,7 +102,7 @@ public class UserService {
                 )).collect(Collectors.toList());
     }
 
-    // Fetch user by ID with cloud accounts
+    // ✅ Get user by ID
     public UserResponseDTO getUserById(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
@@ -131,7 +120,7 @@ public class UserService {
         return null;
     }
 
-    // Helper: get cloud accounts mapped to user
+    // ✅ Cloud accounts for a user
     private List<CloudAccountsDto> getCloudAccountsForUser(User user) {
         List<UserCloudAccountMap> mappings = mappingRepository.findByUser(user);
         return mappings.stream()
@@ -147,52 +136,25 @@ public class UserService {
                 }).collect(Collectors.toList());
     }
 
+    // ✅ Logout
     public void blacklistRefreshToken(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setRefreshToken(null); // Remove the refresh token
-            user.setBlacklisted(true); // Mark user as blacklisted
+            user.setRefreshToken(null);
+            user.setBlacklisted(true);
             userRepository.save(user);
         }
     }
 
+    // ✅ Refresh Access Token
     public JwtResponse refreshAccessToken(String refreshToken) {
-        String email = validateRefreshToken(refreshToken);
+        String email = jwtService.validateRefreshToken(refreshToken);
         if (email == null) {
-            return null; // Invalid refresh token
+            return null;
         }
 
-        String newAccessToken = generateAccessToken(email);
+        String newAccessToken = jwtService.generateAccessToken(email);
         return new JwtResponse(newAccessToken);
     }
-
-    // Method to validate the refresh token
-    private String validateRefreshToken(String refreshToken) {
-        try {
-            String email = Jwts.parser()
-                    .setSigningKey("secure-key")
-                    .parseClaimsJws(refreshToken)
-                    .getBody()
-                    .getSubject();
-            return email;
-        } catch (Exception e) {
-            return null; // Invalid token
-        }
-    }
-
-    // Generate new access token
-    private String generateAccessToken(String email) {
-        long now = System.currentTimeMillis();
-        long expirationMillis = 1000 * 60 * 15; // 15 minutes expiration
-
-        return Jwts.builder()
-                .setSubject(email)
-                .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now + expirationMillis))
-                .signWith(SignatureAlgorithm.HS256, "secure-key") // Use a secure key
-                .compact();
-    }
-
-
 }

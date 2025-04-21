@@ -10,6 +10,6 @@ public class UserDTO {
     private String lastName;
     private String email;
     private String password;
-    private String role; // e.g., ADMIN, READ_ONLY, CUSTOMER
+    private String role;
     private LocalDateTime lastLogin;
 }
