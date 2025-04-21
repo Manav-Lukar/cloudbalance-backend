@@ -1,7 +1,9 @@
 package com.cloudbalance.service;
-
+import org.springframework.security.core.Authentication;
+import com.cloudbalance.dto.AssignRequest;
 import com.cloudbalance.dto.CloudAccountsDto;
 import com.cloudbalance.dto.CreateUserRequest;
+import com.cloudbalance.dto.UpdateUserRequest;
 import com.cloudbalance.entity.CloudAccount;
 import com.cloudbalance.entity.Role;
 import com.cloudbalance.entity.User;
@@ -14,9 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CloudAccountService {
@@ -36,15 +38,13 @@ public class CloudAccountService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<CloudAccount> getAllCloudAccounts() {
-        return cloudAccountRepository.findAll();
-    }
-
+    // Fetch all cloud accounts
     public List<CloudAccountsDto> getAllCloudAccountsDto() {
         List<CloudAccount> accounts = cloudAccountRepository.findAll();
         return accounts.stream().map(account -> {
             CloudAccountsDto dto = new CloudAccountsDto();
             dto.setId(account.getId());
+            dto.setArnNumber(account.getArnNumber());
             dto.setAccountName(account.getAccountName());
             dto.setProvider(account.getProvider());
             dto.setAccountId(account.getAccountId());
@@ -53,35 +53,52 @@ public class CloudAccountService {
         }).collect(Collectors.toList());
     }
 
+    // Fetch orphan cloud accounts
     public List<CloudAccount> getOrphanAccounts() {
         return cloudAccountRepository.findByIsOrphanedTrue();
     }
 
-    public void assignAccounts(Long userId, List<Long> accountIds, User adminUser) {
-        User user = userRepository.findById(userId)
+    // Add a new cloud account
+    public void addCloudAccount(CloudAccountsDto dto) {
+        CloudAccount account = CloudAccount.builder()
+                .accountId(dto.getAccountId())
+                .arnNumber(dto.getArnNumber())
+                .accountName(dto.getAccountName())
+                .provider(dto.getProvider())
+                .isOrphaned(true) // Default to orphaned
+                .build();
+
+        cloudAccountRepository.save(account);
+    }
+
+    // Assign accounts to a user
+    public void assignAccountsToUser(AssignRequest request, Authentication authentication) {
+        String adminEmail = authentication.getName();
+        User adminUser = userRepository.findByEmail(adminEmail)
+                .orElseThrow(() -> new RuntimeException("Admin not found"));
+
+        User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!user.getRole().getName().equalsIgnoreCase("CUSTOMER")) {
             throw new RuntimeException("Only CUSTOMER users can be assigned accounts.");
         }
 
-        List<CloudAccount> accounts = cloudAccountRepository.findAllById(accountIds);
+        List<CloudAccount> accounts = cloudAccountRepository.findAllById(request.getCloudAccountIds());
         for (CloudAccount account : accounts) {
             account.setIsOrphaned(false);
-
             UserCloudAccountMap mapping = UserCloudAccountMap.builder()
                     .user(user)
                     .cloudAccount(account)
                     .assignedBy(adminUser)
                     .build();
-
             mappingRepository.save(mapping);
         }
-
         cloudAccountRepository.saveAll(accounts);
     }
 
-    public void createUserWithAccounts(CreateUserRequest request, User adminUser) {
+    // Create user with role and cloud accounts
+    public void addUserWithRoleAndAccounts(CreateUserRequest request, Authentication authentication) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new RuntimeException("Email already exists.");
         }
@@ -97,7 +114,7 @@ public class CloudAccountService {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword())) // ✅ user-defined password
+                .password(passwordEncoder.encode(request.getPassword())) // user-defined password
                 .isActive(true)
                 .role(role)
                 .build();
@@ -108,17 +125,56 @@ public class CloudAccountService {
             List<CloudAccount> accounts = cloudAccountRepository.findAllById(request.getCloudAccountIds());
             for (CloudAccount account : accounts) {
                 account.setIsOrphaned(false);
-
                 UserCloudAccountMap mapping = UserCloudAccountMap.builder()
                         .user(user)
                         .cloudAccount(account)
-                        .assignedBy(adminUser)
+                        .assignedBy(user)
                         .build();
-
                 mappingRepository.save(mapping);
             }
             cloudAccountRepository.saveAll(accounts);
         }
     }
 
+    // Update user details
+    public void updateUser(Long userId, UpdateUserRequest request, Authentication authentication) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (request.getFirstName() != null) user.setFirstName(request.getFirstName());
+        if (request.getLastName() != null) user.setLastName(request.getLastName());
+
+        if (request.getEmail() != null && !request.getEmail().isEmpty() && !request.getEmail().equals(user.getEmail())) {
+            if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+                throw new RuntimeException("Email already exists.");
+            }
+            user.setEmail(request.getEmail());
+        }
+
+        if (request.getPassword() != null && !request.getPassword().isBlank()) {
+            user.setPassword(passwordEncoder.encode(request.getPassword())); // update password
+        }
+
+        if (request.getRole() != null) {
+            Role role = roleRepository.findByName(request.getRole().toUpperCase())
+                    .orElseThrow(() -> new RuntimeException("Role not found."));
+            user.setRole(role);
+        }
+
+        if (request.getCloudAccountIds() != null) {
+            List<CloudAccount> accounts = cloudAccountRepository.findAllById(request.getCloudAccountIds());
+            for (CloudAccount account : accounts) {
+                account.setIsOrphaned(false);
+                UserCloudAccountMap mapping = UserCloudAccountMap.builder()
+                        .user(user)
+                        .cloudAccount(account)
+                        .assignedBy(user)
+                        .build();
+                mappingRepository.save(mapping);
+            }
+            cloudAccountRepository.saveAll(accounts);
+        }
+
+        userRepository.save(user);
+    }
 }

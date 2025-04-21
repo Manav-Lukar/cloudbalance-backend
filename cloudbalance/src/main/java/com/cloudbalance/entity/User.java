@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "users") // 'user' is a reserved keyword in many DBs
+@Table(name = "users")
 public class User {
 
     @Id
@@ -20,13 +20,13 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String firstName; // ✅ first name of the user
+    private String firstName;
 
     @Column(nullable = false)
-    private String lastName; // ✅ last name of the user
+    private String lastName;
 
     @Column(unique = true, nullable = false)
-    private String email; // ✅ email used for login
+    private String email;
 
     @Column(nullable = false)
     private String password;
@@ -36,22 +36,16 @@ public class User {
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
-//    @Column( length = 500)
-//    private String refreshToken;
-//
-//    @Column(length = 500)
-//    private String accessToken;
-//
-//    private boolean blacklisted = false;
+    @Column(length = 500)
+    private String refreshToken; // Store the refresh token here
 
+    private boolean blacklisted = false; // Flag to blacklist the user
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference // ✅ Prevents recursive serialization
+    @JsonManagedReference
     private List<UserCloudAccountMap> cloudAccounts;
-
-
 }

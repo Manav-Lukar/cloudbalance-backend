@@ -2,57 +2,51 @@ package com.cloudbalance.controller;
 
 import com.cloudbalance.dto.LoginRequest;
 import com.cloudbalance.dto.LoginResponse;
-import com.cloudbalance.entity.User;
-import com.cloudbalance.repository.UserRepository;
-import com.cloudbalance.service.JwtService;
+import com.cloudbalance.dto.JwtResponse;
+import com.cloudbalance.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtService jwtService;
-
-    @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
-            );
-
-            User user = userRepository.findByEmail(loginRequest.getEmail())
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-
-            String token = jwtService.generateToken((UserDetails) authentication.getPrincipal());
-
-            return ResponseEntity.ok(new LoginResponse(
-                    "✅ Login successful",
-                    user.getRole().getName(),
-                    token,
-                    user.getEmail()
-            ));
-        } catch (BadCredentialsException ex) {
-            return ResponseEntity.status(401).body("❌ Invalid email or password");
+        LoginResponse response = userService.authenticateUser(loginRequest);
+        if (response != null) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(401).body("Invalid email or password");
         }
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshToken(@RequestBody String refreshToken) {
+        JwtResponse jwtResponse = userService.refreshAccessToken(refreshToken);
+        if (jwtResponse != null) {
+            return ResponseEntity.ok(jwtResponse);
+        } else {
+            return ResponseEntity.status(401).body("Invalid refresh token");
+        }
+    }
+
+    // Logout endpoint if necessary
     @PostMapping("/logout")
-    public ResponseEntity<String> logout() {
-        return ResponseEntity.ok("✅ Logged out successfully.");
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            userService.blacklistRefreshToken(Long.parseLong(token)); // Assuming token holds the user ID
+            return ResponseEntity.ok("Logged out successfully.");
+        } else {
+            return ResponseEntity.badRequest().body("No token provided.");
+        }
     }
 }

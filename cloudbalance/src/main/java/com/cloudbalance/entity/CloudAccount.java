@@ -17,6 +17,7 @@ public class CloudAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String arnNumber;
     private String accountName;
     private String provider;
     private String accountId;
