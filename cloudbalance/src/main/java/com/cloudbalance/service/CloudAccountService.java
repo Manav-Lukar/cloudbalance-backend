@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -97,8 +96,29 @@ public class CloudAccountService {
         cloudAccountRepository.saveAll(accounts);
     }
 
+    public List<CloudAccountsDto> getAssignedAccountsByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<UserCloudAccountMap> mappings = mappingRepository.findByUser(user);
+        return mappings.stream()
+                .map(mapping -> {
+                    CloudAccount account = mapping.getCloudAccount();
+                    CloudAccountsDto dto = new CloudAccountsDto();
+                    dto.setId(account.getId());
+                    dto.setArnNumber(account.getArnNumber());
+                    dto.setAccountName(account.getAccountName());
+                    dto.setProvider(account.getProvider());
+                    dto.setAccountId(account.getAccountId());
+                    dto.setIsOrphaned(account.getIsOrphaned());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+
+
     // Create user with role and cloud accounts
-    public void addUserWithRoleAndAccounts(CreateUserRequest request, Authentication authentication) {
+    public void addUserWithRoleAndAccounts(CreateUserRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new RuntimeException("Email already exists.");
         }
@@ -137,7 +157,7 @@ public class CloudAccountService {
     }
 
     // Update user details
-    public void updateUser(Long userId, UpdateUserRequest request, Authentication authentication) {
+    public void updateUser(Long userId, UpdateUserRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

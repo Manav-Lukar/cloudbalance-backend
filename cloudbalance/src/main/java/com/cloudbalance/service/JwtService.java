@@ -30,10 +30,10 @@ public class JwtService {
     public String validateRefreshToken(String refreshToken) {
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(key) // Use the secure key for parsing
+                    .setSigningKey(key)
                     .parseClaimsJws(refreshToken)
                     .getBody();
-            return claims.getSubject(); // Return the user's email from the token
+            return claims.getSubject();
         } catch (Exception e) {
             return null; // Invalid token
         }
@@ -48,29 +48,29 @@ public class JwtService {
                 .setSubject(email)
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + expirationMillis))
-                .signWith(key, SignatureAlgorithm.HS256) // Secure key for signing
+                .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    // ✅ Extract username (email) from token
+    // Extract username (email) from token
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
-    // ✅ Extract specific claim (e.g., expiration date, roles)
+    // Extract specific claim
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
-    // ✅ Generate a custom JWT token with additional claims (e.g., roles)
+    //  Generate a custom JWT token with additional claims
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", userDetails.getAuthorities()); // Store roles in the token
         return createToken(claims, userDetails.getUsername());
     }
 
-    // ✅ Core method to create a token with claims and subject (email)
+    // Core method to create a token with claims and subject (email)
     private String createToken(Map<String, Object> claims, String subject) {
         long now = System.currentTimeMillis();
         long expirationMillis = 1000 * 60 * 15; // 15 minutes expiration
@@ -83,26 +83,36 @@ public class JwtService {
                 .signWith(key, SignatureAlgorithm.HS256) // Secure key for signing
                 .compact();
     }
+    // Refresh token generator
+    public String generateRefreshToken(String username) {
+        long now = System.currentTimeMillis();
+        long expirationMillis = 1000 * 60 * 60;
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date(now))
+                .setExpiration(new Date(now + expirationMillis))
+                .signWith(key, SignatureAlgorithm.HS256) // Secure key for signing
+                .compact();
+    }
 
-    // ✅ Validate if token is valid (not expired, matching user, and not blacklisted)
+    // Validate if token is valid (not expired, matching user, and not blacklisted)
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername())
                 && !isTokenExpired(token)
                 && !tokenBlacklistService.isTokenBlacklisted(token); // Check blacklist
     }
-
-    // ✅ Check if token is expired
+    // Check if token is expired
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
-    // ✅ Extract expiration date from the token
+    // Extract expiration date from the token
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    // ✅ Parse and extract all claims from the token
+    // Parse and extract all claims from the token
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
                 .setSigningKey(key) // Use the secure key for parsing
@@ -110,15 +120,5 @@ public class JwtService {
                 .getBody();
     }
 
-    //     Optional: Refresh token generator (for generating refresh tokens, if needed)
-    public String generateRefreshToken(String username) {
-        long now = System.currentTimeMillis();
-        long expirationMillis = 1000 * 60 * 60; // 1 hour expiration for refresh token
-        return Jwts.builder()
-                .setSubject(username) // Use the username directly
-                .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now + expirationMillis))
-                .signWith(key, SignatureAlgorithm.HS256) // Secure key for signing
-                .compact();
-    }
+
 }

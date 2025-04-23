@@ -41,13 +41,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = null;
         String email = null;
 
-        // ✅ Extract JWT token from Authorization header
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
-            email = jwtService.extractUsername(token); // Typically user's email
+            email = jwtService.extractUsername(token);
         }
 
-        // ✅ Validate and set authentication in SecurityContext
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
 
@@ -61,7 +59,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
 
-                // ✅ Update last login time
                 userRepository.findByEmail(email).ifPresent(user -> {
                     user.setLastLogin(LocalDateTime.now());
                     userRepository.save(user);
@@ -69,7 +66,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
 
-        // ✅ Continue with the filter chain
         filterChain.doFilter(request, response);
     }
 }

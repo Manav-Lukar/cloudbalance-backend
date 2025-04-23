@@ -11,10 +11,9 @@ public class Dashboard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name; // e.g., "User Management", "AWS Services"
+    private String name;
 
     @OneToMany(mappedBy = "dashboard", cascade = CascadeType.ALL)
     private List<RoleDashboardAccessMap> accessMappings;
 
-    // Constructors, getters, setters
 }

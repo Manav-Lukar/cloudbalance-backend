@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface UserCloudAccountMapRepository extends JpaRepository<UserCloudAccountMap, Long> {
     List<UserCloudAccountMap> findByUser(User user);
+
 }

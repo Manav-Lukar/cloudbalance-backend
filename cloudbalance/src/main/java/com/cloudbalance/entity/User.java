@@ -37,9 +37,8 @@ public class User {
     private LocalDateTime lastLogin;
 
     @Column(length = 500)
-    private String refreshToken; // Store the refresh token here
-
-    private boolean blacklisted = false; // Flag to blacklist the user
+    private String refreshToken;
+    private boolean blacklisted = false;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)

@@ -17,7 +17,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-@PreAuthorize("hasAuthority('ADMIN')")
+
+@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CUSTOMER)")
+
 public class CloudAccountAdminController {
 
     @Autowired
@@ -40,10 +42,16 @@ public class CloudAccountAdminController {
         return ResponseEntity.ok("Cloud account added successfully.");
     }
 
+    // Assign Cloud Account to User
+    @GetMapping("/assigned/{userId}")
+    public List<CloudAccountsDto> getAssignedAccounts(@PathVariable Long userId) {
+        return cloudAccountService.getAssignedAccountsByUserId(userId);
+    }
+
     @PostMapping("/add-user")
     public ResponseEntity<String> addUserWithRoleAndAccounts(@RequestBody CreateUserRequest request, Authentication authentication) {
         try {
-            cloudAccountService.addUserWithRoleAndAccounts(request, authentication);
+            cloudAccountService.addUserWithRoleAndAccounts(request);
             return ResponseEntity.ok("User created successfully.");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(" " + e.getMessage());
@@ -51,9 +59,9 @@ public class CloudAccountAdminController {
     }
 
     @PutMapping("/update-user/{userId}")
-    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody UpdateUserRequest request, Authentication authentication) {
+    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody UpdateUserRequest request) {
         try {
-            cloudAccountService.updateUser(userId, request, authentication);
+            cloudAccountService.updateUser(userId, request);
             return ResponseEntity.ok("User updated successfully.");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("" + e.getMessage());

@@ -10,7 +10,7 @@ public class RoleDashboardAccessMap {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private AccessType accessType; // READ or WRITE
+    private AccessType accessType;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -20,5 +20,4 @@ public class RoleDashboardAccessMap {
     @JoinColumn(name = "dashboard_id")
     private Dashboard dashboard;
 
-    // Constructors, getters, setters
 }

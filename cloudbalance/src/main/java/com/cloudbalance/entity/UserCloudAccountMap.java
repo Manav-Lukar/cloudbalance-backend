@@ -17,7 +17,7 @@ public class UserCloudAccountMap {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference // ✅ Prevent infinite loop with User.cloudAccounts
+    @JsonBackReference
     private User user;
 
     @ManyToOne
@@ -26,7 +26,7 @@ public class UserCloudAccountMap {
 
     @ManyToOne
     @JoinColumn(name = "assigned_by_id")
-    @JsonBackReference(value = "assignedByRef") // ✅ Prevent recursion through assignedBy
-    private User assignedBy; // Admin who assigned
+    @JsonBackReference(value = "assignedByRef")
+    private User assignedBy;
 
 }

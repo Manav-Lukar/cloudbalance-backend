@@ -24,7 +24,7 @@ public class CloudAccount {
     private Boolean isOrphaned = true;
 
     @OneToMany(mappedBy = "cloudAccount", cascade = CascadeType.ALL)
-    @JsonManagedReference // ✅ Prevents infinite recursion with UserCloudAccountMap.cloudAccount
+    @JsonManagedReference
     private List<UserCloudAccountMap> userMappings;
 
     @OneToMany(mappedBy = "cloudAccount", cascade = CascadeType.ALL)

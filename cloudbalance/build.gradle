@@ -37,8 +37,21 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-	runtimeOnly('io.jsonwebtoken:jjwt-jackson:0.11.5') // for JSON serialization/deserialization
-}
-tasks.named('test') {
-	useJUnitPlatform()
+	runtimeOnly('io.jsonwebtoken:jjwt-jackson:0.11.5')
+	// AWS SDK for Java 2.x BOM (Bill of Materials)
+	implementation platform("software.amazon.awssdk:bom:2.31.26")
+
+// AWS SDK modules aligned with the BOM version
+	implementation "software.amazon.awssdk:sts"
+	implementation "software.amazon.awssdk:ec2"
+	implementation "software.amazon.awssdk:rds"
+	implementation "software.amazon.awssdk:secretsmanager"
+	implementation "software.amazon.awssdk:autoscaling"
+
+// AWS SDK for Java 1.x Auto Scaling module
+	implementation "com.amazonaws:aws-java-sdk-autoscaling:1.12.782"
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
 }

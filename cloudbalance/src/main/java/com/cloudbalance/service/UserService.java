@@ -77,11 +77,12 @@ public class UserService {
                 userRepository.save(user);
 
                 return new LoginResponse(
+                        user.getId(),
                         user.getFirstName(),
                         user.getRole().getName(),
                         refreshToken,
                         user.getEmail(),
-                        "✅ Login successful"
+                        " Login successful"
                 );
             }
         }
