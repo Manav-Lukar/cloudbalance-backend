@@ -12,7 +12,6 @@ java {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -50,6 +49,8 @@ dependencies {
 
 // AWS SDK for Java 1.x Auto Scaling module
 	implementation "com.amazonaws:aws-java-sdk-autoscaling:1.12.782"
+
+	implementation("net.snowflake:snowflake-jdbc:3.16.1")
 
 	tasks.named('test') {
 		useJUnitPlatform()

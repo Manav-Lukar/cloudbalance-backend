@@ -17,27 +17,31 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "is_active")
     private Boolean isActive = true;
 
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
-    @Column(length = 500)
+    @Column(name = "refresh_token", length = 500)
     private String refreshToken;
+
+    @Column(name = "is_blacklisted")
     private boolean blacklisted = false;
 
     @ManyToOne(fetch = FetchType.EAGER)
