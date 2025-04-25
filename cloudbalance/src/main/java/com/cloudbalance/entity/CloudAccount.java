@@ -21,6 +21,8 @@ public class CloudAccount {
     private String accountName;
     private String provider;
     private String accountId;
+
+    @Builder.Default
     private Boolean isOrphaned = true;
 
     @OneToMany(mappedBy = "cloudAccount", cascade = CascadeType.ALL)

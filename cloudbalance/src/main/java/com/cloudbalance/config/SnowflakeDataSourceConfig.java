@@ -26,24 +26,6 @@ public class SnowflakeDataSourceConfig {
     @Value("${snowflake.password}")
     private String password;
 
-//    @Value("${snowflake.driver-class-name}")
-//    private String driverClassName;
-
-//    @Bean(name = "snowflakeDataSource")
-//    public DataSource snowflakeDataSource() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setUrl(url);
-//        dataSource.setUsername(username);
-//        dataSource.setPassword(password);
-////        dataSource.setDriverClassName(driverClassName);
-//        return dataSource;
-//    }
-
-    //
-//    @Bean(name = "snowflakeJdbcTemplate")
-//    public JdbcTemplate snowflakeJdbcTemplate(@Qualifier("snowflakeDataSource") DataSource snowflakeDataSource) {
-//        return new JdbcTemplate(snowflakeDataSource);
-//    }
     @Bean
     public Connection snowflakeConnection() throws SQLException {
         log.info("Making bean for snowflake");

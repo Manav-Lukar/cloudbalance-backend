@@ -21,9 +21,11 @@ public class SessionLog {
 
     private String token;
 
+    @Builder.Default
     private LocalDateTime loginTime = LocalDateTime.now();
     private LocalDateTime logoutTime;
 
+    @Builder.Default
     private Boolean isActive = true;
 
     @ManyToOne

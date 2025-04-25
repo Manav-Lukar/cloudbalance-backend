@@ -1,7 +1,6 @@
 package com.cloudbalance.service;
 
 import com.cloudbalance.entity.GroupBy;
-import com.cloudbalance.repository.GroupByRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -77,7 +76,7 @@ public class SnowflakeService {
         StringBuilder result = new StringBuilder();
         String query = """
         SELECT * 
-        FROM COST_EXPLORER LIMIT 6
+        FROM COST_EXPLORER LIMIT 15
         
     """;
 
@@ -119,7 +118,7 @@ public class SnowflakeService {
         String query = "SELECT LINEITEM_USAGEAMOUNT " +
                 "FROM AWS.COST.COST_EXPLORER " +
                 "WHERE LINKEDACCOUNTID = ? " +
-                "LIMIT 10000";
+                "LIMIT 100000";
 
         List<Double> usageAmounts = new ArrayList<>();
 

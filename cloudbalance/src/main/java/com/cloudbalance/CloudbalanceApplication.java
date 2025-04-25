@@ -13,13 +13,8 @@ public class CloudbalanceApplication {
 
 	public static void main(String[] args) {
 		logger.info("Starting Cloudbalance application...");
+		SpringApplication.run(CloudbalanceApplication.class, args);
 
-//		try {
-			SpringApplication.run(CloudbalanceApplication.class, args);
 
-//			logger.info("Cloudbalance application started successfully.");
-//		} catch (Exception e) {
-//			logger.error("Error starting Cloudbalance application: ", e);
-//		}
 	}
 }

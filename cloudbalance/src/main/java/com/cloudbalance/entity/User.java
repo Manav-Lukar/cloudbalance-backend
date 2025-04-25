@@ -32,17 +32,21 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Builder.Default
     @Column(name = "is_active")
     private Boolean isActive = true;
 
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
 
+    @Builder.Default
+    @Column(name = "is_blacklisted")
+    private boolean blacklisted = false;
+
+
     @Column(name = "refresh_token", length = 500)
     private String refreshToken;
 
-    @Column(name = "is_blacklisted")
-    private boolean blacklisted = false;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
@@ -51,4 +55,5 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<UserCloudAccountMap> cloudAccounts;
+
 }
