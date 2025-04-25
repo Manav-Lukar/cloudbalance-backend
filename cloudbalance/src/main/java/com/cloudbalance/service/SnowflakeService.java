@@ -5,13 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.sql.*;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -38,20 +35,15 @@ public class SnowflakeService {
         StringBuilder result = new StringBuilder();
 
         String[] queries = {
-////                "SHOW WAREHOUSES",
-////                "USE WAREHOUSE COMPUTE_WH",
-//                "SHOW TABLES",
                 "SELECT * FROM COST_EXPLORER LIMIT 605"
         };
 
         try (Statement stmt = snowflakeConnection.createStatement()) {
-            for (int i = 0; i < queries.length; i++) {
-                String query = queries[i];
+            for (String query : queries) {
                 log.info("Executing: {}", query);
                 boolean hasResultSet = stmt.execute(query);
 
-                // Only process SELECT result (last query)
-                if (i == queries.length - 1 && hasResultSet) {
+                if (hasResultSet) {
                     ResultSet rs = stmt.getResultSet();
                     int columnCount = rs.getMetaData().getColumnCount();
 
@@ -71,14 +63,9 @@ public class SnowflakeService {
         return result.toString();
     }
 
-
     public String getLinkedAccountUsageSummary() {
         StringBuilder result = new StringBuilder();
-        String query = """
-        SELECT * 
-        FROM COST_EXPLORER LIMIT 15
-        
-    """;
+        String query = "SELECT * FROM COST_EXPLORER LIMIT 15";
 
         try (Statement stmt = snowflakeConnection.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -99,7 +86,7 @@ public class SnowflakeService {
 
     public List<Long> getAllLinkedAccountIds() {
         List<Long> accountIds = new ArrayList<>();
-        String query = "SELECT LINKEDACCOUNTID FROM COST_EXPLORER limit 50";
+        String query = "SELECT LINKEDACCOUNTID FROM COST_EXPLORER LIMIT 50";
 
         try (Statement stmt = snowflakeConnection.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
@@ -115,10 +102,12 @@ public class SnowflakeService {
     }
 
     public List<Double> getUsageAmountsForAccount(Long accountId) {
-        String query = "SELECT LINEITEM_USAGEAMOUNT " +
-                "FROM AWS.COST.COST_EXPLORER " +
-                "WHERE LINKEDACCOUNTID = ? " +
-                "LIMIT 100000";
+        String query = """
+            SELECT LINEITEM_USAGEAMOUNT 
+            FROM AWS.COST.COST_EXPLORER 
+            WHERE LINKEDACCOUNTID = ? 
+            LIMIT 100000
+        """;
 
         List<Double> usageAmounts = new ArrayList<>();
 
@@ -136,6 +125,73 @@ public class SnowflakeService {
         return usageAmounts;
     }
 
+    // ✅ NEW METHOD: Dynamic data fetch with filters and grouping
+    public List<Map<String, Object>> fetchDynamicData(
+            String startDate,
+            String endDate,
+            String groupByColumn,
+            Map<String, Object> filters
+    ) {
+        List<Map<String, Object>> results = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
 
+        StringBuilder query = new StringBuilder();
+        query.append("SELECT TO_CHAR(USAGESTARTDATE, 'YYYY-MM') AS USAGE_MONTH, ")
+                .append(groupByColumn).append(", ")
+                .append("SUM(LINEITEM_UNBLENDEDCOST) AS TOTAL_USAGE_COST ")
+                .append("FROM COST_EXPLORER WHERE USAGESTARTDATE BETWEEN ? AND ? ");
 
+        // Add date parameters
+        params.add(Date.valueOf(LocalDate.parse(startDate)));
+        params.add(Date.valueOf(LocalDate.parse(endDate)));
+
+        // Dynamically add filters to the query
+        for (Map.Entry<String, Object> entry : filters.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (value instanceof List<?> list && !list.isEmpty()) {
+                query.append("AND ").append(key).append(" IN (")
+                        .append(String.join(", ", Collections.nCopies(list.size(), "?")))
+                        .append(") ");
+                params.addAll(list);
+            } else {
+                query.append("AND ").append(key).append(" = ? ");
+                params.add(value);
+            }
+        }
+
+        query.append("GROUP BY TO_CHAR(USAGESTARTDATE, 'YYYY-MM'), ")
+                .append(groupByColumn)
+                .append(" ORDER BY USAGE_MONTH, TOTAL_USAGE_COST DESC");
+
+        log.info("Generated query: {}", query.toString());
+        log.info("Binding parameters: {}", params);
+
+        try (PreparedStatement stmt = snowflakeConnection.prepareStatement(query.toString())) {
+            // Bind the parameters to the query
+            for (int i = 0; i < params.size(); i++) {
+                stmt.setObject(i + 1, params.get(i));
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                ResultSetMetaData meta = rs.getMetaData();
+                int colCount = meta.getColumnCount();
+
+                while (rs.next()) {
+                    Map<String, Object> row = new LinkedHashMap<>();
+                    for (int i = 1; i <= colCount; i++) {
+                        row.put(meta.getColumnLabel(i), rs.getObject(i));
+                    }
+                    results.add(row);
+                }
+            }
+        } catch (Exception e) {
+            log.error("Snowflake dynamic data fetch failed", e);
+            throw new RuntimeException("Snowflake query failed: " + e.getMessage(), e);
+        }
+
+        log.info("Number of rows fetched: {}", results.size());
+        return results;
+    }
 }

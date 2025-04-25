@@ -1,12 +1,11 @@
 package com.cloudbalance.controller;
 
+import com.cloudbalance.dto.DynamicCostRequest;
 import com.cloudbalance.entity.GroupBy;
 import com.cloudbalance.service.SnowflakeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,4 +47,19 @@ public class SnowflakeTestController {
 
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/dynamic-data")
+    public ResponseEntity<List<Map<String, Object>>> getDynamicCostData(
+            @RequestBody DynamicCostRequest request,
+            @RequestParam String groupBy) {
+
+        String startDate = request.getStartDate();
+        String endDate = request.getEndDate();
+        String accountId = request.getAccountId();
+        Map<String, Object> filters = request.getFilters();
+
+        List<Map<String, Object>> result = snowflakeService.fetchDynamicData(startDate, endDate, accountId, filters);
+        return ResponseEntity.ok(result);
+    }
+
 }
