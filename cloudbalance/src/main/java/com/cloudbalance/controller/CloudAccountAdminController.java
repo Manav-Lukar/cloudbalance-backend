@@ -30,10 +30,10 @@ public class CloudAccountAdminController {
         return ResponseEntity.ok(cloudAccountService.getAllCloudAccountsDto());
     }
 
-    @GetMapping("/cloud-accounts/orphan")
-    public ResponseEntity<List<CloudAccount>> getOrphanAccounts() {
-        return ResponseEntity.ok(cloudAccountService.getOrphanAccounts());
-    }
+//    @GetMapping("/cloud-accounts/orphan")
+//    public ResponseEntity<List<CloudAccount>> getOrphanAccounts() {
+//        return ResponseEntity.ok(cloudAccountService.getOrphanAccounts());
+//    }
 
     // Add Cloud Account
     @PostMapping("/add-cloud-accounts")
@@ -48,23 +48,4 @@ public class CloudAccountAdminController {
         return cloudAccountService.getAssignedAccountsByUserId(userId);
     }
 
-    @PostMapping("/add-user")
-    public ResponseEntity<String> addUserWithRoleAndAccounts(@RequestBody CreateUserRequest request, Authentication authentication) {
-        try {
-            cloudAccountService.addUserWithRoleAndAccounts(request);
-            return ResponseEntity.ok("User created successfully.");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(" " + e.getMessage());
-        }
-    }
-
-    @PutMapping("/update-user/{userId}")
-    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody UpdateUserRequest request) {
-        try {
-            cloudAccountService.updateUser(userId, request);
-            return ResponseEntity.ok("User updated successfully.");
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body("" + e.getMessage());
-        }
-    }
 }

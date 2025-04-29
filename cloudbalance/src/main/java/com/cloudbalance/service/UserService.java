@@ -7,14 +7,14 @@ import com.cloudbalance.entity.UserCloudAccountMap;
 import com.cloudbalance.repository.RoleRepository;
 import com.cloudbalance.repository.UserRepository;
 import com.cloudbalance.repository.UserCloudAccountMapRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ public class UserService {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtService jwtService; // ✅ Inject JwtService
+    private JwtService jwtService;
 
     // ✅ User registration
     public boolean addUser(UserDTO userDTO) {
@@ -63,8 +63,8 @@ public class UserService {
         return true;
     }
 
-    // ✅ User login
-    public LoginResponse authenticateUser(LoginRequest loginRequest) {
+    // ✅ Updated login returning ResponseEntity
+    public ResponseEntity<?> login(LoginRequest loginRequest) {
         Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getEmail());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -76,20 +76,52 @@ public class UserService {
 
                 userRepository.save(user);
 
-                return new LoginResponse(
+                LoginResponse response = new LoginResponse(
                         user.getId(),
                         user.getFirstName(),
                         user.getRole().getName(),
                         refreshToken,
                         user.getEmail(),
-                        " Login successful"
+                        "Login successful"
                 );
+
+                return ResponseEntity.ok(response);
             }
         }
-        return null;
+        return ResponseEntity.status(401).body("Invalid email or password");
     }
 
-    // ✅ Get all users
+    // ✅ Updated refresh token returning ResponseEntity
+    public ResponseEntity<?> refreshToken(String refreshToken) {
+        String email = jwtService.validateRefreshToken(refreshToken);
+        if (email == null) {
+            return ResponseEntity.status(401).body("Invalid refresh token");
+        }
+
+        String newAccessToken = jwtService.generateAccessToken(email);
+        return ResponseEntity.ok(new JwtResponse(newAccessToken));
+    }
+
+    //  Updated logout returning ResponseEntity
+    public ResponseEntity<?> logout(String authHeader) {
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            String email = jwtService.validateRefreshToken(token);
+            if (email != null) {
+                Optional<User> optionalUser = userRepository.findByEmail(email);
+                if (optionalUser.isPresent()) {
+                    User user = optionalUser.get();
+                    blacklistRefreshToken(user.getId());
+                    return ResponseEntity.ok("Logged out successfully.");
+                }
+            }
+            return ResponseEntity.status(401).body("Invalid token.");
+        } else {
+            return ResponseEntity.badRequest().body("No token provided.");
+        }
+    }
+
+    // ✅ Existing methods
     public List<UserResponseDTO> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(user -> new UserResponseDTO(
@@ -97,14 +129,14 @@ public class UserService {
                         user.getFirstName(),
                         user.getLastName(),
                         user.getEmail(),
-                        user.getLastLogin(),
+                        user.getLastLogin() != null ? user.getLastLogin().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) : null,
                         user.getRole().getName(),
                         getCloudAccountsForUser(user)
                 )).collect(Collectors.toList());
     }
 
-    // ✅ Get user by ID
     public UserResponseDTO getUserById(Long id) {
+
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -113,7 +145,7 @@ public class UserService {
                     user.getFirstName(),
                     user.getLastName(),
                     user.getEmail(),
-                    user.getLastLogin(),
+                    user.getLastLogin() != null ? user.getLastLogin().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) : null,
                     user.getRole().getName(),
                     getCloudAccountsForUser(user)
             );
@@ -121,7 +153,6 @@ public class UserService {
         return null;
     }
 
-    // ✅ Cloud accounts for a user
     private List<CloudAccountsDto> getCloudAccountsForUser(User user) {
         List<UserCloudAccountMap> mappings = mappingRepository.findByUser(user);
         return mappings.stream()
@@ -137,7 +168,6 @@ public class UserService {
                 }).collect(Collectors.toList());
     }
 
-    // ✅ Logout
     public void blacklistRefreshToken(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
@@ -146,16 +176,5 @@ public class UserService {
             user.setBlacklisted(true);
             userRepository.save(user);
         }
-    }
-
-    // ✅ Refresh Access Token
-    public JwtResponse refreshAccessToken(String refreshToken) {
-        String email = jwtService.validateRefreshToken(refreshToken);
-        if (email == null) {
-            return null;
-        }
-
-        String newAccessToken = jwtService.generateAccessToken(email);
-        return new JwtResponse(newAccessToken);
     }
 }

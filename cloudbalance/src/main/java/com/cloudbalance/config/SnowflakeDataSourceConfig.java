@@ -29,7 +29,6 @@ public class SnowflakeDataSourceConfig {
     @Bean
     public Connection snowflakeConnection() throws SQLException {
         log.info("Making bean for snowflake");
-//        String url = String.format(datasource);
         return DriverManager.getConnection(url,
                 username, password);
     }

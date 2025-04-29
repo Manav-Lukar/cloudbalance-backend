@@ -2,7 +2,6 @@ package com.cloudbalance.dto;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -15,7 +14,7 @@ public class UserResponseDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private LocalDateTime lastLogin;
+    private String lastLogin; // Changed from LocalDateTime to String
     private String role;
     private List<CloudAccountsDto> cloudAccounts;
 }
