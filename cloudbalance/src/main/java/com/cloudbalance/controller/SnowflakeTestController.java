@@ -26,6 +26,7 @@ public class SnowflakeTestController {
     private final SnowflakeCostExplorerService snowflakeCostExplorerService;
 
 
+
     @PostMapping("/dynamic-cost-data")
     public ResponseEntity<List<Map<String, Object>>> getDynamicCostData(
             @RequestBody DynamicCostRequest request) {

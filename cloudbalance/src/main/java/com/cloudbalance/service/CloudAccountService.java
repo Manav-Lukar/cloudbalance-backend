@@ -15,9 +15,9 @@ import com.cloudbalance.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Service
 public class CloudAccountService {
@@ -155,7 +155,6 @@ public class CloudAccountService {
             cloudAccountRepository.saveAll(accounts);
         }
     }
-
     // Update user details
     public void updateUser(Long userId, UpdateUserRequest request) {
         User user = userRepository.findById(userId)
@@ -170,7 +169,6 @@ public class CloudAccountService {
             }
             user.setEmail(request.getEmail());
         }
-
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(request.getPassword())); // update password
         }
@@ -180,7 +178,6 @@ public class CloudAccountService {
                     .orElseThrow(() -> new RuntimeException("Role not found."));
             user.setRole(role);
         }
-
         if (request.getCloudAccountIds() != null) {
             List<CloudAccount> accounts = cloudAccountRepository.findAllById(request.getCloudAccountIds());
             for (CloudAccount account : accounts) {
@@ -194,7 +191,6 @@ public class CloudAccountService {
             }
             cloudAccountRepository.saveAll(accounts);
         }
-
         userRepository.save(user);
     }
 }

@@ -14,6 +14,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+
 public class SnowflakeCostExplorerService {
 
     private final Connection snowflakeConnection;
