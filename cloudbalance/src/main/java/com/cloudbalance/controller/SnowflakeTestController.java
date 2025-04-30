@@ -36,11 +36,23 @@ public class SnowflakeTestController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/groupby")
     public List<ColumnResponse> getAllColumns() {
         List<Columns> columnsList = snowflakeCostExplorerService.getAllColumns();
         return columnsList.stream()
                 .map(c -> new ColumnResponse(c.getDisplayName(), c.getActualName()))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/filters")
+    public ResponseEntity<Map<String, List<String>>> getFilterValuesForAllGroupByColumns() {
+        Map<String, List<String>> filterValues = snowflakeCostExplorerService.getFilterValuesForAllGroupByColumns();
+        return ResponseEntity.ok(filterValues);
+    }
+    @GetMapping("/filters/{groupBy}")
+    public ResponseEntity<List<String>> getFilterValuesForGroupBy(@PathVariable String groupBy) {
+        List<String> filters = snowflakeCostExplorerService.getFilterValuesForGroupBy(groupBy);
+        return ResponseEntity.ok(filters);
+    }
+
 }

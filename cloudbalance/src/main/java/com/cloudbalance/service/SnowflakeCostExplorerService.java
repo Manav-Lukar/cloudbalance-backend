@@ -18,87 +18,81 @@ public class SnowflakeCostExplorerService {
 
     private final Connection snowflakeConnection;
     private final ColumnRepository columnRepository;
+
     public List<Map<String, Object>> fetchDynamicCostData(DynamicCostRequest request) {
+        if (request == null) {
+            throw new IllegalArgumentException("Request cannot be null");
+        }
+        if (request.getStartDate() == null || request.getEndDate() == null) {
+            throw new IllegalArgumentException("Start date and end date must not be null");
+        }
+
         List<Map<String, Object>> results = new ArrayList<>();
         List<Object> params = new ArrayList<>();
 
-        // Format start and end date
         String startDateFormatted = request.getStartDate() + "-01";
         String endDateFormatted = request.getEndDate() + "-31";
 
-        // Fetch actual group by column name from MySQL if provided
-        // Initialize actualGroupBy to null
+        List<Columns> columnsList = getAllColumns();
+        Map<String, String> displayToActualMap = new HashMap<>();
+        for (Columns col : columnsList) {
+            displayToActualMap.put(col.getDisplayName().toUpperCase(), col.getActualName());
+        }
+
         String actualGroupBy = null;
 
-// Check if groupBy is provided in the request
         if (request.getGroupBy() != null && !request.getGroupBy().isEmpty()) {
-
-            // Retrieve all columns
-            List<Columns> columnsList = getAllColumns();
-
-            // Try to find the column with the displayName matching the groupBy
-            Optional<Columns> column = columnsList.stream()
-                    .filter(c -> c.getDisplayName().equalsIgnoreCase(request.getGroupBy()))
-                    .findFirst();
-
-            // If the column is found, get the actualName, else throw an exception
-            if (column.isPresent()) {
-                actualGroupBy = column.get().getActualName();
-            } else {
+            actualGroupBy = displayToActualMap.get(request.getGroupBy().toUpperCase());
+            if (actualGroupBy == null) {
                 throw new RuntimeException("Group By field not found in Columns table: " + request.getGroupBy());
             }
         }
 
-// Now actualGroupBy will have the value or an exception will be thrown if not found
-
-
         StringBuilder query = new StringBuilder();
-        query.append("SELECT ")
-                .append("PRODUCT_PRODUCTNAME, ");
+        query.append("SELECT ");
 
         if (actualGroupBy != null) {
             query.append(actualGroupBy).append(", ");
         } else {
-            query.append("'' AS LINEITEM_USAGETYPE, ");
+            query.append("'' AS GROUP_BY, ");
         }
 
         query.append("SUM(LINEITEM_UNBLENDEDCOST) AS TOTAL_USAGE_COST ")
                 .append("FROM COST_EXPLORER ")
                 .append("WHERE USAGESTARTDATE BETWEEN ? AND ? ");
 
-        // Add date params
         params.add(Date.valueOf(startDateFormatted));
         params.add(Date.valueOf(endDateFormatted));
 
-        // Account ID filter
         if (request.getAccountId() != null && !request.getAccountId().isEmpty()) {
             query.append("AND LINKEDACCOUNTID = ? ");
             params.add(request.getAccountId());
         }
 
-        // Additional filters
-        if (request.getFilters() != null) {
+        if (request.getFilters() != null && !request.getFilters().isEmpty()) {
             for (Map.Entry<String, Object> entry : request.getFilters().entrySet()) {
-                String key = entry.getKey();
+                String displayKey = entry.getKey().toUpperCase();
                 Object value = entry.getValue();
+                String actualKey = displayToActualMap.get(displayKey);
+
+                if (actualKey == null) {
+                    throw new RuntimeException("Filter field not found in Columns table: " + displayKey);
+                }
 
                 if (value instanceof List<?> list && !list.isEmpty()) {
-                    query.append("AND ").append(key).append(" IN (")
+                    query.append("AND ").append(actualKey).append(" IN (")
                             .append(String.join(", ", Collections.nCopies(list.size(), "?")))
                             .append(") ");
                     params.addAll(list);
-                } else {
-                    query.append("AND ").append(key).append(" = ? ");
+                } else if (value != null) {
+                    query.append("AND ").append(actualKey).append(" = ? ");
                     params.add(value);
                 }
             }
         }
 
-        // Group By
         if (actualGroupBy != null) {
-            query.append("GROUP BY PRODUCT_PRODUCTNAME, ").append(actualGroupBy).append(" ");
-        } else {
-            query.append("GROUP BY PRODUCT_PRODUCTNAME ");
+            query.append("GROUP BY ").append(actualGroupBy).append(" ");
         }
 
         query.append("ORDER BY TOTAL_USAGE_COST DESC");
@@ -127,12 +121,10 @@ public class SnowflakeCostExplorerService {
             throw new RuntimeException("Error executing Snowflake query: " + e.getMessage(), e);
         }
 
-        // ===== Process top 5 + Others =====
         if (results.isEmpty()) {
             return results;
         }
 
-        // Sort descending
         results.sort((a, b) -> {
             Double costB = getDoubleSafely(b.get("TOTAL_USAGE_COST"));
             Double costA = getDoubleSafely(a.get("TOTAL_USAGE_COST"));
@@ -144,7 +136,14 @@ public class SnowflakeCostExplorerService {
 
         for (int i = 0; i < results.size(); i++) {
             if (i < 5) {
-                finalResult.add(results.get(i));
+                Map<String, Object> result = new LinkedHashMap<>();
+                if (actualGroupBy != null) {
+                    result.put(request.getGroupBy(), results.get(i).get(actualGroupBy));
+                } else {
+                    result.put("Group", "");
+                }
+                result.put("Total Usage", getDoubleSafely(results.get(i).get("TOTAL_USAGE_COST")));
+                finalResult.add(result);
             } else {
                 othersSum += getDoubleSafely(results.get(i).get("TOTAL_USAGE_COST"));
             }
@@ -152,14 +151,8 @@ public class SnowflakeCostExplorerService {
 
         if (results.size() > 5) {
             Map<String, Object> othersEntry = new LinkedHashMap<>();
-            othersEntry.put("PRODUCT_PRODUCTNAME", "Others");
-
-            // Handle group by field if present
-            if (request.getGroupBy() != null && !request.getGroupBy().isEmpty()) {
-                othersEntry.put(actualGroupBy != null ? actualGroupBy : request.getGroupBy(), "Others");
-            }
-
-            othersEntry.put("TOTAL_USAGE_COST", othersSum);
+            othersEntry.put(request.getGroupBy() != null ? request.getGroupBy() : "Group", "Others");
+            othersEntry.put("Total Usage", othersSum);
             finalResult.add(othersEntry);
         }
 
@@ -179,5 +172,69 @@ public class SnowflakeCostExplorerService {
     public List<Columns> getAllColumns() {
         return columnRepository.findAll();
     }
+
+    public Map<String, List<String>> getFilterValuesForAllGroupByColumns() {
+        Map<String, List<String>> filterMap = new LinkedHashMap<>();
+        List<Columns> columnsList = getAllColumns();
+
+        for (Columns column : columnsList) {
+            String displayName = column.getDisplayName();
+            String actualName = column.getActualName();
+            String query = "SELECT DISTINCT " + actualName + " FROM COST_EXPLORER WHERE " + actualName + " IS NOT NULL";
+
+            try (PreparedStatement stmt = snowflakeConnection.prepareStatement(query);
+                 ResultSet rs = stmt.executeQuery()) {
+
+                List<String> values = new ArrayList<>();
+                while (rs.next()) {
+                    Object val = rs.getObject(1);
+                    if (val != null) {
+                        values.add(val.toString());
+                    }
+                }
+                filterMap.put(displayName, values);
+
+            } catch (SQLException e) {
+                log.error("Error fetching filter values for column: {}", actualName, e);
+                // You can choose to throw or continue with other columns
+            }
+        }
+
+        return filterMap;
+    }
+    public List<String> getFilterValuesForGroupBy(String groupByDisplayName) {
+        if (groupByDisplayName == null || groupByDisplayName.trim().isEmpty()) {
+            throw new IllegalArgumentException("GroupBy display name cannot be null or empty");
+        }
+
+        List<Columns> columnsList = getAllColumns();
+        Optional<Columns> column = columnsList.stream()
+                .filter(c -> c.getDisplayName().equalsIgnoreCase(groupByDisplayName))
+                .findFirst();
+
+        if (column.isEmpty()) {
+            throw new RuntimeException("GroupBy column not found: " + groupByDisplayName);
+        }
+
+        String actualName = column.get().getActualName();
+        String query = "SELECT DISTINCT " + actualName + " FROM COST_EXPLORER WHERE " + actualName + " IS NOT NULL";
+
+        List<String> values = new ArrayList<>();
+        try (PreparedStatement stmt = snowflakeConnection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Object val = rs.getObject(1);
+                if (val != null) {
+                    values.add(val.toString());
+                }
+            }
+        } catch (SQLException e) {
+            log.error("Error fetching filter values for column: {}", actualName, e);
+            throw new RuntimeException("Error fetching filters for: " + groupByDisplayName, e);
+        }
+
+        return values;
+    }
+
 
 }
