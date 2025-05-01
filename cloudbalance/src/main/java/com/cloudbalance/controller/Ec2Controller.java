@@ -1,7 +1,4 @@
 package com.cloudbalance.controller;
-
-
-
 import com.cloudbalance.dto.Ec2MetaData;
 import com.cloudbalance.service.Ec2Service;
 import org.springframework.beans.factory.annotation.Autowired;

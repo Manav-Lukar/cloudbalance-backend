@@ -17,40 +17,53 @@ import java.util.List;
 public class RdsService {
 
     public List<RDSMetaData> getRdsInstancesViaAssumedRole(String roleArn, String region) {
-        StsClient stsClient = StsClient.builder()
-                .region(Region.of(region))
-                .build();
+        try {
+            StsClient stsClient = StsClient.builder()
+                    .region(Region.of(region))
+                    .build();
 
-        AssumeRoleRequest assumeRoleRequest = AssumeRoleRequest.builder()
-                .roleArn(roleArn)
-                .roleSessionName("springbootRdsSession")
-                .build();
+            AssumeRoleRequest assumeRoleRequest = AssumeRoleRequest.builder()
+                    .roleArn(roleArn)
+                    .roleSessionName("springbootRdsSession")
+                    .build();
 
-        AssumeRoleResponse assumeRoleResponse = stsClient.assumeRole(assumeRoleRequest);
+            AssumeRoleResponse assumeRoleResponse = stsClient.assumeRole(assumeRoleRequest);
 
-        AwsSessionCredentials sessionCredentials = AwsSessionCredentials.create(
-                assumeRoleResponse.credentials().accessKeyId(),
-                assumeRoleResponse.credentials().secretAccessKey(),
-                assumeRoleResponse.credentials().sessionToken()
-        );
+            AwsSessionCredentials sessionCredentials = AwsSessionCredentials.create(
+                    assumeRoleResponse.credentials().accessKeyId(),
+                    assumeRoleResponse.credentials().secretAccessKey(),
+                    assumeRoleResponse.credentials().sessionToken()
+            );
 
-        RdsClient rdsClient = RdsClient.builder()
-                .region(Region.of(region))
-                .credentialsProvider(StaticCredentialsProvider.create(sessionCredentials))
-                .build();
+            RdsClient rdsClient = RdsClient.builder()
+                    .region(Region.of(region))
+                    .credentialsProvider(StaticCredentialsProvider.create(sessionCredentials))
+                    .build();
 
-        DescribeDbInstancesResponse response = rdsClient.describeDBInstances();
-        List<RDSMetaData> rdsList = new ArrayList<>();
+            DescribeDbInstancesResponse response = rdsClient.describeDBInstances();
+            List<RDSMetaData> rdsList = new ArrayList<>();
 
-        for (DBInstance db : response.dbInstances()) {
-            rdsList.add(new RDSMetaData(
-                    db.dbInstanceArn(),
-                    db.dbInstanceClass(),
-                    db.engine(),
-                    db.dbInstanceStatus(),
-                    region
-            ));
+            for (DBInstance db : response.dbInstances()) {
+                rdsList.add(new RDSMetaData(
+                        db.dbInstanceArn(),
+                        db.dbInstanceClass(),
+                        db.engine(),
+                        db.dbInstanceStatus(),
+                        region
+                ));
+            }
+
+            if (rdsList.isEmpty()) {
+                throw new RuntimeException("No RDS instances found for role: " + roleArn);
+            }
+
+            return rdsList;
+
+        } catch (StsException | RdsException e) {
+            // Log the error
+            System.err.println("Failed to fetch RDS instances: " + e.getMessage());
+            // Return empty list or custom error message instead of 500 error
+            return new ArrayList<>();
         }
-        return rdsList;
     }
 }

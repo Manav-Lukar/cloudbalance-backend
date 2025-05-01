@@ -56,7 +56,7 @@ public class SnowflakeCostExplorerService {
         } else {
             query.append("'' AS GROUP_BY, ");
         }
-        query.append("SUM(LINEITEM_UNBLENDEDCOST) AS TOTAL_USAGE_COST ")
+        query.append("SUM(LINEITEM_USAGEAMOUNT) AS TOTAL_USAGE_COST ")
                 .append("FROM COST_EXPLORER ")
                 .append("WHERE USAGESTARTDATE BETWEEN ? AND ? ");
 

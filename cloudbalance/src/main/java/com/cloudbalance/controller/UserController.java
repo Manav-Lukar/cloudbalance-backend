@@ -11,13 +11,15 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/login")
+@EnableMethodSecurity
 public class UserController {
 
     private final CloudAccountService cloudAccountService;
@@ -42,24 +44,29 @@ public class UserController {
     }
 
     @GetMapping("/users")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('READ_ONLY')")
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
     @GetMapping("/users/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('READ_ONLY')")
     public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
         UserResponseDTO user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/add-user")
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> addUserWithRoleAndAccounts(@Valid @RequestBody CreateUserRequest request, Authentication authentication) {
         cloudAccountService.addUserWithRoleAndAccounts(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully.");
     }
 
+
     @PutMapping("/update-user/{userId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> updateUser(@PathVariable Long userId, @Valid @RequestBody UpdateUserRequest request) {
         cloudAccountService.updateUser(userId, request);
         return ResponseEntity.ok("User updated successfully.");

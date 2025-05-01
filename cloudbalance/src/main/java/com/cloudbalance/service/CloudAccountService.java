@@ -116,6 +116,32 @@ public class CloudAccountService {
                 .collect(Collectors.toList());
     }
 
+    // Helper method to remove all cloud account associations for a user
+    private void removeUserCloudAccountAssociations(User user) {
+        // Get all mappings for this user
+        List<UserCloudAccountMap> userMappings = mappingRepository.findByUser(user);
+
+        // Get all cloud accounts associated with this user
+        List<CloudAccount> associatedAccounts = userMappings.stream()
+                .map(UserCloudAccountMap::getCloudAccount)
+                .collect(Collectors.toList());
+
+        // Delete all mappings for this user
+        mappingRepository.deleteAll(userMappings);
+
+        // Update the orphaned status of each account
+        for (CloudAccount account : associatedAccounts) {
+            // If there are no other mappings for this account, mark it as orphaned
+            if (mappingRepository.findByCloudAccount(account).isEmpty()) {
+                account.setIsOrphaned(true);
+            }
+        }
+
+        // Save the updated cloud accounts
+        if (!associatedAccounts.isEmpty()) {
+            cloudAccountRepository.saveAll(associatedAccounts);
+        }
+    }
 
     // Create user with role and cloud accounts
     public void addUserWithRoleAndAccounts(CreateUserRequest request) {
@@ -155,10 +181,14 @@ public class CloudAccountService {
             cloudAccountRepository.saveAll(accounts);
         }
     }
+
     // Update user details
     public void updateUser(Long userId, UpdateUserRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+
+        boolean wasCustomer = user.getRole().getName().equalsIgnoreCase("CUSTOMER");
+        boolean willBeCustomer = wasCustomer; // Default to current value
 
         if (request.getFirstName() != null) user.setFirstName(request.getFirstName());
         if (request.getLastName() != null) user.setLastName(request.getLastName());
@@ -177,8 +207,16 @@ public class CloudAccountService {
             Role role = roleRepository.findByName(request.getRole().toUpperCase())
                     .orElseThrow(() -> new RuntimeException("Role not found."));
             user.setRole(role);
+            willBeCustomer = role.getName().equalsIgnoreCase("CUSTOMER");
         }
-        if (request.getCloudAccountIds() != null) {
+
+        // If the user was a CUSTOMER but is no longer going to be one, remove all cloud account associations
+        if (wasCustomer && !willBeCustomer) {
+            removeUserCloudAccountAssociations(user);
+        }
+
+        // Only assign new cloud accounts if the user is or will be a CUSTOMER
+        if (willBeCustomer && request.getCloudAccountIds() != null) {
             List<CloudAccount> accounts = cloudAccountRepository.findAllById(request.getCloudAccountIds());
             for (CloudAccount account : accounts) {
                 account.setIsOrphaned(false);
@@ -191,6 +229,7 @@ public class CloudAccountService {
             }
             cloudAccountRepository.saveAll(accounts);
         }
+
         userRepository.save(user);
     }
 }

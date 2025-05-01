@@ -10,16 +10,15 @@ import com.cloudbalance.service.CloudAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@EnableMethodSecurity
 @RequestMapping("/admin")
-
-@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('CUSTOMER)")
-
 public class CloudAccountAdminController {
 
     @Autowired
@@ -37,6 +36,7 @@ public class CloudAccountAdminController {
 
     // Add Cloud Account
     @PostMapping("/add-cloud-accounts")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> addCloudAccount(@RequestBody CloudAccountsDto dto) {
         cloudAccountService.addCloudAccount(dto);
         return ResponseEntity.ok("Cloud account added successfully.");

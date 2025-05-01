@@ -14,7 +14,5 @@ public class CloudbalanceApplication {
 	public static void main(String[] args) {
 		logger.info("Starting Cloudbalance application...");
 		SpringApplication.run(CloudbalanceApplication.class, args);
-
-
 	}
 }
