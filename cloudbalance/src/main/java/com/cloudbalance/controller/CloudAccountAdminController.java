@@ -28,12 +28,6 @@ public class CloudAccountAdminController {
     public ResponseEntity<List<CloudAccountsDto>> getAllAccounts() {
         return ResponseEntity.ok(cloudAccountService.getAllCloudAccountsDto());
     }
-
-//    @GetMapping("/cloud-accounts/orphan")
-//    public ResponseEntity<List<CloudAccount>> getOrphanAccounts() {
-//        return ResponseEntity.ok(cloudAccountService.getOrphanAccounts());
-//    }
-
     // Add Cloud Account
     @PostMapping("/add-cloud-accounts")
     @PreAuthorize("hasRole('ADMIN')")
@@ -47,5 +41,4 @@ public class CloudAccountAdminController {
     public List<CloudAccountsDto> getAssignedAccounts(@PathVariable Long userId) {
         return cloudAccountService.getAssignedAccountsByUserId(userId);
     }
-
 }

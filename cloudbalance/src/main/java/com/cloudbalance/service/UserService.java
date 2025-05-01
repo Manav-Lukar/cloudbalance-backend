@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -120,18 +122,32 @@ public class UserService {
 
     // Improved getAllUsers
     public List<UserResponseDTO> getAllUsers() {
+        String currentUserEmail = getCurrentUserEmail();
+
         return userRepository.findAll().stream()
+                .filter(user -> !user.getEmail().equals(currentUserEmail))  // Exclude logged-in user
                 .map(user -> new UserResponseDTO(
                         user.getId(),
                         user.getFirstName(),
                         user.getLastName(),
                         user.getEmail(),
-                        user.getLastLogin() != null ? user.getLastLogin().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) : null,
+                        user.getLastLogin() != null
+                                ? user.getLastLogin().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                                : null,
                         user.getRole().getName(),
                         getCloudAccountsForUser(user)
-                )).collect(Collectors.toList());
+                ))
+                .collect(Collectors.toList());
     }
 
+    private String getCurrentUserEmail() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        } else {
+            return principal.toString();
+        }
+    }
     // Improved getUserById with exception handling
     public UserResponseDTO getUserById(Long id) {
         User user = userRepository.findById(id)

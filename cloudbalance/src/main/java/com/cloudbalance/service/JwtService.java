@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,11 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    // Secret key for signing JWT tokens (use a secure key in production)
-    private final String SECRET_KEY = "cloudbalancewebprojecttrainingmanavlukarfullstackdevelopjasjajsjaskasaker";
+    // Inject the secret key from application.properties
+    @Value("${jwt.secret}")
+    private String secretKeyString;
 
-    // Secure key for signing JWT
-    private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    private SecretKey key;
 
     private final TokenBlacklistService tokenBlacklistService;
 
@@ -26,20 +27,25 @@ public class JwtService {
         this.tokenBlacklistService = tokenBlacklistService;
     }
 
-    // ✅ Validate refresh token and return email (subject)
+    // Initialize the key after properties are injected
+    private SecretKey getSigningKey() {
+        if (key == null) {
+            key = Keys.hmacShaKeyFor(secretKeyString.getBytes());
+        }
+        return key;
+    }
     public String validateRefreshToken(String refreshToken) {
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(key)
+                    .setSigningKey(getSigningKey())
                     .parseClaimsJws(refreshToken)
                     .getBody();
             return claims.getSubject();
         } catch (Exception e) {
-            return null; // Invalid token
+            return null;
         }
     }
 
-    // ✅ Generate access token (valid for 15 minutes)
     public String generateAccessToken(String email) {
         long now = System.currentTimeMillis();
         long expirationMillis = 1000 * 60 * 15; // 15 minutes expiration
@@ -48,11 +54,10 @@ public class JwtService {
                 .setSubject(email)
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + expirationMillis))
-                .signWith(key, SignatureAlgorithm.HS256)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    // Extract username (email) from token
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -63,26 +68,27 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    //  Generate a custom JWT token with additional claims
+    //  Generate a custom JWT token with more claims
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", userDetails.getAuthorities()); // Store roles in the token
+        claims.put("roles", userDetails.getAuthorities());
         return createToken(claims, userDetails.getUsername());
     }
 
-    // Core method to create a token with claims and subject (email)
+    // create a token with claims and subject (email)
     private String createToken(Map<String, Object> claims, String subject) {
         long now = System.currentTimeMillis();
-        long expirationMillis = 1000 * 60 * 15; // 15 minutes expiration
+        long expirationMillis = 1000 * 60 * 15;
 
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + expirationMillis))
-                .signWith(key, SignatureAlgorithm.HS256) // Secure key for signing
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
     // Refresh token generator
     public String generateRefreshToken(String username) {
         long now = System.currentTimeMillis();
@@ -91,34 +97,27 @@ public class JwtService {
                 .setSubject(username)
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + expirationMillis))
-                .signWith(key, SignatureAlgorithm.HS256) // Secure key for signing
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    // Validate if token is valid (not expired, matching user, and not blacklisted)
+    // Validate if token is valid
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername())
                 && !isTokenExpired(token)
                 && !tokenBlacklistService.isTokenBlacklisted(token); // Check blacklist
     }
-    // Check if token is expired
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
-
-    // Extract expiration date from the token
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
-
-    // Parse and extract all claims from the token
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(key) // Use the secure key for parsing
+                .setSigningKey(getSigningKey())
                 .parseClaimsJws(token)
                 .getBody();
     }
-
-
 }
