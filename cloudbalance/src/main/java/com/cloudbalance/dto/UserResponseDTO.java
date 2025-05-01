@@ -14,7 +14,7 @@ public class UserResponseDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private String lastLogin; // Changed from LocalDateTime to String
+    private String lastLogin;
     private String role;
     private List<CloudAccountsDto> cloudAccounts;
 }

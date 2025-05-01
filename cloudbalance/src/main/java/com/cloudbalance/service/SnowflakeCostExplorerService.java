@@ -14,7 +14,6 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-
 public class SnowflakeCostExplorerService {
 
     private final Connection snowflakeConnection;
@@ -57,7 +56,6 @@ public class SnowflakeCostExplorerService {
         } else {
             query.append("'' AS GROUP_BY, ");
         }
-
         query.append("SUM(LINEITEM_UNBLENDEDCOST) AS TOTAL_USAGE_COST ")
                 .append("FROM COST_EXPLORER ")
                 .append("WHERE USAGESTARTDATE BETWEEN ? AND ? ");
@@ -117,9 +115,12 @@ public class SnowflakeCostExplorerService {
                     results.add(row);
                 }
             }
-        } catch (Exception e) {
-            log.error("Error fetching dynamic Snowflake cost data: ", e);
+        } catch (SQLException e) {
+            log.error("SQL Error fetching dynamic Snowflake cost data: ", e);
             throw new RuntimeException("Error executing Snowflake query: " + e.getMessage(), e);
+        } catch (Exception e) {
+            log.error("Unexpected error fetching dynamic Snowflake cost data: ", e);
+            throw new RuntimeException("Unexpected error: " + e.getMessage(), e);
         }
 
         if (results.isEmpty()) {
@@ -171,7 +172,12 @@ public class SnowflakeCostExplorerService {
     }
 
     public List<Columns> getAllColumns() {
-        return columnRepository.findAll();
+        try {
+            return columnRepository.findAll();
+        } catch (Exception e) {
+            log.error("Error fetching columns from database: ", e);
+            throw new RuntimeException("Error fetching columns from database", e);
+        }
     }
 
     public Map<String, List<String>> getFilterValuesForAllGroupByColumns() {
@@ -196,13 +202,17 @@ public class SnowflakeCostExplorerService {
                 filterMap.put(displayName, values);
 
             } catch (SQLException e) {
-                log.error("Error fetching filter values for column: {}", actualName, e);
-                // You can choose to throw or continue with other columns
+                log.error("SQL Error fetching filter values for column: {}", actualName, e);
+                // Continue with other columns or rethrow the exception if needed
+            } catch (Exception e) {
+                log.error("Unexpected error fetching filter values for column: {}", actualName, e);
+                // Continue with other columns or rethrow the exception if needed
             }
         }
 
         return filterMap;
     }
+
     public List<String> getFilterValuesForGroupBy(String groupByDisplayName) {
         if (groupByDisplayName == null || groupByDisplayName.trim().isEmpty()) {
             throw new IllegalArgumentException("GroupBy display name cannot be null or empty");
@@ -230,12 +240,13 @@ public class SnowflakeCostExplorerService {
                 }
             }
         } catch (SQLException e) {
-            log.error("Error fetching filter values for column: {}", actualName, e);
+            log.error("SQL Error fetching filter values for column: {}", actualName, e);
             throw new RuntimeException("Error fetching filters for: " + groupByDisplayName, e);
+        } catch (Exception e) {
+            log.error("Unexpected error fetching filter values for column: {}", actualName, e);
+            throw new RuntimeException("Unexpected error fetching filters for: " + groupByDisplayName, e);
         }
 
         return values;
     }
-
-
 }

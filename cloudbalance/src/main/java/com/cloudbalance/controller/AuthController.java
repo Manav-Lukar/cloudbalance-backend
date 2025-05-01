@@ -2,6 +2,7 @@ package com.cloudbalance.controller;
 
 import com.cloudbalance.dto.LoginRequest;
 import com.cloudbalance.dto.JwtResponse;
+import com.cloudbalance.dto.LoginResponse;
 import com.cloudbalance.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +16,12 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
         return userService.login(loginRequest);
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<?> refreshToken(@RequestBody String refreshToken) {
+    public JwtResponse refreshToken(@RequestBody String refreshToken) {
         return userService.refreshToken(refreshToken);
     }
 
