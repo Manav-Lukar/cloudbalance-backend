@@ -16,7 +16,6 @@ public class CustomUserDetails implements UserDetails {
         this.user = user;
     }
 
-    // ✅ Return user role as a GrantedAuthority
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // Use the getter method to access the role name
@@ -24,7 +23,6 @@ public class CustomUserDetails implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
-    // ✅ Return hashed password
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -38,25 +36,24 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true; // Add custom logic if needed
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true; // Add custom logic if needed
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true; // Add custom logic if needed
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true; // Return user.isActive() if you track this in your entity
+        return true;
     }
 
-    // ✅ Helpful to access original User entity
     public User getUser() {
         return this.user;
     }

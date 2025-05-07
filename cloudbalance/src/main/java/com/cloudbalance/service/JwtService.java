@@ -15,7 +15,6 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    // Inject the secret key from application.properties
     @Value("${jwt.secret}")
     private String secretKeyString;
 
@@ -36,10 +35,15 @@ public class JwtService {
     }
     public String validateRefreshToken(String refreshToken) {
         try {
+            if (tokenBlacklistService.isTokenBlacklisted(refreshToken)) {
+                return null;
+            }
+
             Claims claims = Jwts.parser()
                     .setSigningKey(getSigningKey())
                     .parseClaimsJws(refreshToken)
                     .getBody();
+
             return claims.getSubject();
         } catch (Exception e) {
             return null;
@@ -62,7 +66,6 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    // Extract specific claim
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);

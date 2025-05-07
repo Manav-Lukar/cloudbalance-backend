@@ -18,9 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Service
 public class CloudAccountService {
+
 
     @Autowired
     private UserRepository userRepository;
@@ -188,7 +188,7 @@ public class CloudAccountService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         boolean wasCustomer = user.getRole().getName().equalsIgnoreCase("CUSTOMER");
-        boolean willBeCustomer = wasCustomer; // Default to current value
+        boolean willBeCustomer = wasCustomer;
 
         if (request.getFirstName() != null) user.setFirstName(request.getFirstName());
         if (request.getLastName() != null) user.setLastName(request.getLastName());
@@ -199,8 +199,9 @@ public class CloudAccountService {
             }
             user.setEmail(request.getEmail());
         }
+
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
-            user.setPassword(passwordEncoder.encode(request.getPassword())); // update password
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
         }
 
         if (request.getRole() != null) {
@@ -210,24 +211,26 @@ public class CloudAccountService {
             willBeCustomer = role.getName().equalsIgnoreCase("CUSTOMER");
         }
 
-        // If the user was a CUSTOMER but is no longer going to be one, remove all cloud account associations
         if (wasCustomer && !willBeCustomer) {
             removeUserCloudAccountAssociations(user);
         }
 
-        // Only assign new cloud accounts if the user is or will be a CUSTOMER
         if (willBeCustomer && request.getCloudAccountIds() != null) {
-            List<CloudAccount> accounts = cloudAccountRepository.findAllById(request.getCloudAccountIds());
-            for (CloudAccount account : accounts) {
-                account.setIsOrphaned(false);
-                UserCloudAccountMap mapping = UserCloudAccountMap.builder()
-                        .user(user)
-                        .cloudAccount(account)
-                        .assignedBy(user)
-                        .build();
-                mappingRepository.save(mapping);
+            removeUserCloudAccountAssociations(user);
+
+            if (!request.getCloudAccountIds().isEmpty()) {
+                List<CloudAccount> accounts = cloudAccountRepository.findAllById(request.getCloudAccountIds());
+                for (CloudAccount account : accounts) {
+                    account.setIsOrphaned(false);
+                    UserCloudAccountMap mapping = UserCloudAccountMap.builder()
+                            .user(user)
+                            .cloudAccount(account)
+                            .assignedBy(user)
+                            .build();
+                    mappingRepository.save(mapping);
+                }
+                cloudAccountRepository.saveAll(accounts);
             }
-            cloudAccountRepository.saveAll(accounts);
         }
 
         userRepository.save(user);

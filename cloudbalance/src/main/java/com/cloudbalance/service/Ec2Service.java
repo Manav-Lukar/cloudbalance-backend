@@ -19,16 +19,18 @@ public class Ec2Service {
 
     public List<Ec2MetaData> getEc2InstancesViaAssumedRole(String roleArn, String region) {
         try {
-            StsClient stsClient = StsClient.builder()
+            AssumeRoleResponse assumeRoleResponse;
+            try (StsClient stsClient = StsClient.builder()
                     .region(Region.of(region))
-                    .build();
+                    .build()) {
 
-            AssumeRoleRequest assumeRoleRequest = AssumeRoleRequest.builder()
-                    .roleArn(roleArn)
-                    .roleSessionName("springbootSession")
-                    .build();
+                AssumeRoleRequest assumeRoleRequest = AssumeRoleRequest.builder()
+                        .roleArn(roleArn)
+    //                    .roleSessionName("springbootSession")
+                        .build();
 
-            AssumeRoleResponse assumeRoleResponse = stsClient.assumeRole(assumeRoleRequest);
+                assumeRoleResponse = stsClient.assumeRole(assumeRoleRequest);
+            }
 
             AwsSessionCredentials sessionCredentials = AwsSessionCredentials.create(
                     assumeRoleResponse.credentials().accessKeyId(),

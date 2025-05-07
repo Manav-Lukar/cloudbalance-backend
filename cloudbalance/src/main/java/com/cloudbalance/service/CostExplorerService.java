@@ -14,7 +14,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class SnowflakeCostExplorerService {
+public class CostExplorerService {
 
     private final Connection snowflakeConnection;
     private final ColumnRepository columnRepository;
@@ -246,7 +246,6 @@ public class SnowflakeCostExplorerService {
             log.error("Unexpected error fetching filter values for column: {}", actualName, e);
             throw new RuntimeException("Unexpected error fetching filters for: " + groupByDisplayName, e);
         }
-
         return values;
     }
 }

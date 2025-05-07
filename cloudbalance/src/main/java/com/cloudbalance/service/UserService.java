@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,6 +44,9 @@ public class UserService {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private TokenBlacklistService tokenBlacklistService;
 
     // Improved user registration with exception handling
     public void addUser(UserDTO userDTO) {
@@ -116,8 +120,13 @@ public class UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
 
-        blacklistRefreshToken(user.getId());
-        return null;
+        user.setRefreshToken(null);
+        user.setBlacklisted(true);
+        userRepository.save(user);
+
+        tokenBlacklistService.blacklistToken(token);
+
+        return ResponseEntity.ok(Map.of("message", "Logout successful"));
     }
 
     // Improved getAllUsers

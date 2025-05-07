@@ -1,5 +1,4 @@
 package com.cloudbalance.config;
-
 import com.cloudbalance.filter.JwtAuthFilter;
 import com.cloudbalance.service.CustomUserDetailsService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -74,10 +73,10 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(true);
+                        .allowCredentials(false);
             }
         };
     }
